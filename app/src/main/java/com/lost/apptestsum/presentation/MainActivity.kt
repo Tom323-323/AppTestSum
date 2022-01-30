@@ -1,5 +1,6 @@
 package com.lost.apptestsum.presentation
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -21,13 +22,14 @@ class MainActivity : AppCompatActivity() {
         val btn_read = findViewById<Button>(R.id.btn_read_data)
 
         btn_save.setOnClickListener(View.OnClickListener {
-            val text = edit_text.text
-            saveData.exect(DataModel(data_text = text))
+            val text = edit_text.text.toString()
+            saveData.exect(DataModel(data_text = text, data_day = ""))
 
         })
 
         btn_read.setOnClickListener(View.OnClickListener {
-
+            val intent = Intent(this, RVdata::class.java)
+            startActivity(intent)
         })
 
     }

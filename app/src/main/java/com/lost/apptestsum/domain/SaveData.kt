@@ -13,9 +13,9 @@ class SaveData() {
     private val day_now: String = sdf.format(currentDate)
 
    fun exect(objData: DataModel){
-       var data_text = objData.data_text
-
-
+        var data_text = objData.data_text
+        var data_day = objData.data_day
+        //shared pref
    }
 
 
