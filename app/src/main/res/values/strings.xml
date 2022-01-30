@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">AppTestSum</string>
+    <string name="hello_johnny">Hello, Johnny!</string>
+    <string name="constant_sring">Твой вес сегодня:</string>
+    <string name="constant_saveText">СОХРАНИТЬ</string>
+    <string name="constant_read_dataText">ПОСМОТРЕТЬ ДАННЫЕ</string>
+    <string name="constant_string_2">Напиши тут свой вес</string>
+    <string name="data">data</string>
+    <string name="normal_not_noral_data">normal_not_data</string>
+    <string name="_100_0">100.0</string>
+</resources>
