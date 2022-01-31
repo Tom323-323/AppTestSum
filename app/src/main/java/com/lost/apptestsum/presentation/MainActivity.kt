@@ -7,15 +7,21 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import com.lost.apptestsum.R
+import com.lost.apptestsum.data.repository.DataRepositoryImp
+import com.lost.apptestsum.domain.ReadData
 import com.lost.apptestsum.domain.SaveData
 import com.lost.apptestsum.domain.model.DataModel
+import com.lost.apptestsum.domain.repository.DataRepository
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val saveData = SaveData()
+        val dataRepository = DataRepositoryImp()
+        val saveData = SaveData(dataRepository)
+        val readData = ReadData(dataRepository)
 
         val edit_text = findViewById<EditText>(R.id.et_dataUser)
         val btn_save = findViewById<Button>(R.id.btn_save)

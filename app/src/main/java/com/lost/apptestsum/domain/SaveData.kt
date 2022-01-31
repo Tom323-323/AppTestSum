@@ -2,10 +2,11 @@ package com.lost.apptestsum.domain
 
 import android.annotation.SuppressLint
 import com.lost.apptestsum.domain.model.DataModel
+import com.lost.apptestsum.domain.repository.DataRepository
 import java.text.SimpleDateFormat
 import java.util.*
 
-class SaveData() {
+class SaveData(private val dataRepository: DataRepository) {
 
     @SuppressLint("SimpleDateFormat")
     val sdf = SimpleDateFormat("dd.MM.yyyy")
@@ -13,9 +14,8 @@ class SaveData() {
     private val day_now: String = sdf.format(currentDate)
 
    fun exect(objData: DataModel){
-        var data_text = objData.data_text
-        var data_day = objData.data_day
-        //shared pref
+       dataRepository.saveData(objData)
+
    }
 
 
