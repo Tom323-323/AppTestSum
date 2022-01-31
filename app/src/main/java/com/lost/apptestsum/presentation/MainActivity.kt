@@ -1,17 +1,16 @@
 package com.lost.apptestsum.presentation
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import com.lost.apptestsum.R
 import com.lost.apptestsum.data.repository.DataRepositoryImp
 import com.lost.apptestsum.domain.ReadData
 import com.lost.apptestsum.domain.SaveData
 import com.lost.apptestsum.domain.model.DataModel
-import com.lost.apptestsum.domain.repository.DataRepository
 
 
 class MainActivity : AppCompatActivity() {
@@ -34,8 +33,9 @@ class MainActivity : AppCompatActivity() {
         })
 
         btn_read.setOnClickListener(View.OnClickListener {
-            val intent = Intent(this, RVdata::class.java)
-            startActivity(intent)
+            val dataShow = readData.execut()
+            val textShow = dataShow.data_text.toString()
+            Toast.makeText(applicationContext, textShow, Toast.LENGTH_LONG).show()
         })
 
     }

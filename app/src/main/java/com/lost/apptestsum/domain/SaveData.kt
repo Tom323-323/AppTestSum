@@ -14,7 +14,9 @@ class SaveData(private val dataRepository: DataRepository) {
     private val day_now: String = sdf.format(currentDate)
 
    fun exect(objData: DataModel){
-       dataRepository.saveData(objData)
+
+       val objData1 = DataModel(data_text = objData.data_text,data_day=day_now)
+       dataRepository.saveData(objData1)
 
    }
 
