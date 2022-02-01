@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         btn_read.setOnClickListener(View.OnClickListener {
             val dataShow = readData.execut()
-            val textShow = dataShow.data_text.toString()
+            val textShow = dataShow.data_text
             Toast.makeText(applicationContext, textShow, Toast.LENGTH_LONG).show()
         })
 
