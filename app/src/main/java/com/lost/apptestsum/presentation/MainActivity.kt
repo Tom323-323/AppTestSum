@@ -19,8 +19,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val dataRepository = DataRepositoryImp()
-        val saveData = SaveData(dataRepository)
-        val readData = ReadData(dataRepository)
+        val saveData = SaveData(dataRepository = dataRepository)
+        val readData = ReadData(dataRepository = dataRepository)
 
         val edit_text = findViewById<EditText>(R.id.et_dataUser)
         val btn_save = findViewById<Button>(R.id.btn_save)
