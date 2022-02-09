@@ -19,8 +19,10 @@ class DataRepositoryImp : DataRepository {
         val text = saveParam.data_day
         val text2 = saveParam.data_text
         val dataFireModel = DataModel(data_text = text2,data_day = text)
+
+
         val dataFire = database.getReference("DataHolder")
-        dataFire.setValue(dataFireModel)
+        dataFire.push().setValue(dataFireModel)
 
 
 

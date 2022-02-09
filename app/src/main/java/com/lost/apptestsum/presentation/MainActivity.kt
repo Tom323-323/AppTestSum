@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.google.android.material.snackbar.Snackbar
 import com.lost.apptestsum.R
 import com.lost.apptestsum.data.repository.DataRepositoryImp
 import com.lost.apptestsum.domain.ReadData
@@ -29,6 +30,11 @@ class MainActivity : AppCompatActivity() {
         btn_save.setOnClickListener(View.OnClickListener {
             val text = edit_text.text.toString()
             saveData.exect(DataModel(data_text = text, data_day = ""))
+
+            Snackbar.make(btn_save,"Данные сохранены",Snackbar.LENGTH_LONG)
+                .setAction("OK"){ }.show()
+
+            edit_text.setText("")
 
         })
 
