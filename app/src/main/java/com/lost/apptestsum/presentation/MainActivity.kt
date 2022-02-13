@@ -29,12 +29,15 @@ class MainActivity : AppCompatActivity() {
 
         btn_save.setOnClickListener(View.OnClickListener {
             val text = edit_text.text.toString()
+            if(text.isEmpty()){
+                Snackbar.make(btn_save,"Введи вес в поле",Snackbar.LENGTH_LONG)
+                .setAction("OK"){ }.show()
+            } else {
             saveData.exect(DataModel(data_text = text, data_day = ""))
-
             Snackbar.make(btn_save,"Данные сохранены",Snackbar.LENGTH_LONG)
                 .setAction("OK"){ }.show()
-
             edit_text.setText("")
+            }
 
         })
 
