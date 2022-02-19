@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import com.lost.apptestsum.R
 import com.lost.apptestsum.data.repository.DataRepositoryImp
+import com.lost.apptestsum.data.storage.fireBase.FBstorage
 import com.lost.apptestsum.domain.ReadData
 import com.lost.apptestsum.domain.SaveData
 import com.lost.apptestsum.domain.model.DataModel
@@ -19,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val dataRepository = DataRepositoryImp()
+        val dataRepository = DataRepositoryImp(FBstorage())
         val saveData = SaveData(dataRepository = dataRepository)
         val readData = ReadData(dataRepository = dataRepository)
 

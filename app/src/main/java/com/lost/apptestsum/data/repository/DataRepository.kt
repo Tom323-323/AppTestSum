@@ -1,6 +1,8 @@
 package com.lost.apptestsum.data.repository
 
-import com.lost.apptestsum.data.storage.FBstorage
+import com.lost.apptestsum.data.storage.DataStorage
+import com.lost.apptestsum.data.storage.model.DataModelStorage
+import com.lost.apptestsum.data.storage.fireBase.FBstorage
 import com.lost.apptestsum.domain.model.DataModel
 import com.lost.apptestsum.domain.repository.DataRepository
 
@@ -8,11 +10,20 @@ import com.lost.apptestsum.domain.repository.DataRepository
 class DataRepositoryImp (private val fBstorage: FBstorage): DataRepository {
 
     override fun saveData(saveParam: DataModel){
-       return fBstorage.saveDataStorage(saveParam)
+        return fBstorage.saveDataStorage(mapToStorage(saveParam))
     }
 
     override fun readData():DataModel {
-        return fBstorage.readDataStorage()
+        return mapToDomain(fBstorage.readDataStorage())
+    }
+
+    fun mapToStorage(saveParam: DataModel):DataModelStorage{
+        val dataStorage = DataModelStorage(dataStorage_day = saveParam.data_day, dataStorage_text = saveParam.data_text)
+        return dataStorage
+    }
+
+    private fun mapToDomain(dataModelStorage: DataModelStorage): DataModel {
+        return DataModel(data_text = dataModelStorage.dataStorage_text, data_day = dataModelStorage.dataStorage_day)
     }
 
 

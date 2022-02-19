@@ -1,14 +1,12 @@
 package com.lost.apptestsum.data.storage
 
-import com.lost.apptestsum.domain.model.DataModel
+import com.lost.apptestsum.data.storage.model.DataModelStorage
 
 interface DataStorage {
 
-   fun saveDataStorage(saveParam: DataModel)
+   fun saveDataStorage(saveParam: DataModelStorage)
 
-
-
-   fun readDataStorage():DataModel
+   fun readDataStorage(): DataModelStorage
 
 
 }
