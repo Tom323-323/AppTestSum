@@ -1,4 +1,4 @@
-package com.lost.apptestsum.domain
+package com.lost.apptestsum.domain.usecase
 
 import android.annotation.SuppressLint
 import com.lost.apptestsum.domain.model.DataModel

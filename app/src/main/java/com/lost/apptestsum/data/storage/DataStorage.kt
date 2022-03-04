@@ -8,5 +8,4 @@ interface DataStorage {
 
    fun readDataStorage(): DataModelStorage
 
-
 }
