@@ -6,6 +6,4 @@ interface DataStorage {
 
    fun saveDataStorage(saveParam: DataModelStorage)
 
-   fun readDataStorage(): DataModelStorage
-
 }

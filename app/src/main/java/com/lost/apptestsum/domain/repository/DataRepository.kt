@@ -6,5 +6,4 @@ interface DataRepository {
 
     fun saveData(saveParam: DataModel)
 
-    fun readData(): DataModel
 }
