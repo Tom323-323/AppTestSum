@@ -21,28 +21,28 @@ class MainActivity : AppCompatActivity() {
         val dataRepository = DataRepositoryImp(FBstorage())
         val saveData = SaveData(dataRepository = dataRepository)
 
-        val edit_text = findViewById<EditText>(R.id.et_dataUser)
-        val btn_save = findViewById<Button>(R.id.btn_save)
-        val btn_read = findViewById<Button>(R.id.btn_read_data)
+        val editText = findViewById<EditText>(R.id.et_dataUser)
+        val btnSave = findViewById<Button>(R.id.btn_save)
+        val btnRead = findViewById<Button>(R.id.btn_read_data)
 
-        btn_save.setOnClickListener(View.OnClickListener {
-            val id = (0..1000000000).random()
-            val text = edit_text.text.toString()
+        btnSave.setOnClickListener(View.OnClickListener {
+
+            val text = editText.text.toString()
             if(text.isEmpty()){
-                Snackbar.make(btn_save,"Введи вес в поле",Snackbar.LENGTH_LONG)
+                Snackbar.make(btnSave,"Введи вес в поле",Snackbar.LENGTH_LONG)
                 .setAction("OK"){ }.show()
             } else {
-            saveData.exect(DataModel(id = id, data_text = text, data_day = ""))
-            Snackbar.make(btn_save,"Данные сохранены",Snackbar.LENGTH_LONG)
+            saveData.exect(DataModel( data_text = text, data_day = ""))
+            Snackbar.make(btnSave,"Данные сохранены",Snackbar.LENGTH_LONG)
                 .setAction("OK"){ }.show()
-            edit_text.text.clear()
+            editText.text.clear()
             }
 
         })
 
-        btn_read.setOnClickListener(View.OnClickListener {
-            val Intent = Intent(this, ActivityDataRead::class.java)
-            startActivity(Intent)
+        btnRead.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, ActivityDataRead::class.java)
+            startActivity(intent)
         })
     }
 }

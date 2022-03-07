@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import com.lost.apptestsum.R
-import com.lost.apptestsum.domain.adapter.AdapterActivityRead
+import com.lost.apptestsum.presentation.adapter.AdapterActivityRead
 import com.lost.apptestsum.domain.model.DataModel
 
 class ActivityDataRead: AppCompatActivity() {
@@ -53,5 +53,10 @@ class ActivityDataRead: AppCompatActivity() {
                 TODO("Not yet implemented")
             }
         })
+    }
+
+    override fun onStop() {
+        super.onStop()
+        finish()
     }
 }

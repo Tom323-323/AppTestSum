@@ -1,4 +1,4 @@
-package com.lost.apptestsum.domain.adapter
+package com.lost.apptestsum.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.View
