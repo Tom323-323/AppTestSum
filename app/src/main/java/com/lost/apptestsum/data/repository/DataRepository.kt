@@ -18,12 +18,11 @@ class DataRepositoryImp (private val fBstorage: FBstorage): DataRepository {
     }
 
     fun mapToStorage(saveParam: DataModel):DataModelStorage{
-        val dataStorage = DataModelStorage(dataStorage_day = saveParam.data_day, dataStorage_text = saveParam.data_text)
-        return dataStorage
+        return DataModelStorage(id_storage = saveParam.id,dataStorage_day = saveParam.data_day, dataStorage_text = saveParam.data_text)
     }
 
     private fun mapToDomain(dataModelStorage: DataModelStorage): DataModel {
-        return DataModel(data_text = dataModelStorage.dataStorage_text, data_day = dataModelStorage.dataStorage_day)
+        return DataModel(id = dataModelStorage.id_storage,data_text = dataModelStorage.dataStorage_text, data_day = dataModelStorage.dataStorage_day)
     }
 
 

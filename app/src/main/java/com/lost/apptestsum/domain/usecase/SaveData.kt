@@ -9,13 +9,15 @@ import java.util.*
 class SaveData(private val dataRepository: DataRepository) {
 
     @SuppressLint("SimpleDateFormat")
-    val sdf = SimpleDateFormat("dd.MM.yyyy")
+    val sdf = SimpleDateFormat("dd_MM_yyyy")
     private val currentDate = Date()
     private val day_now: String = sdf.format(currentDate)
 
+
+
    fun exect(objData: DataModel){
 
-       val objData1 = DataModel(data_text = objData.data_text,data_day=day_now)
+       val objData1 = DataModel(id = objData.id,data_text = objData.data_text,data_day=day_now)
        dataRepository.saveData(objData1)
 
    }

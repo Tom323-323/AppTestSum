@@ -1,5 +1,6 @@
 package com.lost.apptestsum.presentation
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -28,24 +29,27 @@ class MainActivity : AppCompatActivity() {
         val btn_save = findViewById<Button>(R.id.btn_save)
         val btn_read = findViewById<Button>(R.id.btn_read_data)
 
+
+
         btn_save.setOnClickListener(View.OnClickListener {
+            val id = (0..1000000000).random()
             val text = edit_text.text.toString()
             if(text.isEmpty()){
                 Snackbar.make(btn_save,"Введи вес в поле",Snackbar.LENGTH_LONG)
                 .setAction("OK"){ }.show()
             } else {
-            saveData.exect(DataModel(data_text = text, data_day = ""))
+            saveData.exect(DataModel(id = id, data_text = text, data_day = ""))
             Snackbar.make(btn_save,"Данные сохранены",Snackbar.LENGTH_LONG)
                 .setAction("OK"){ }.show()
-            edit_text.setText("")
+            edit_text.text.clear()
             }
 
         })
 
         btn_read.setOnClickListener(View.OnClickListener {
-            val dataShow = readData.execut()
-            val textShow = dataShow.data_text
-            Toast.makeText(applicationContext, textShow, Toast.LENGTH_LONG).show()
+            val Intent = Intent(this, ActivityDataRead::class.java)
+            startActivity(Intent)
+            finish()
         })
 
     }
