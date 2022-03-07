@@ -2,5 +2,5 @@ package com.lost.apptestsum.domain.model
 
 
 
-class DataModel(var id: Int, var data_text: String, var data_day:String){
+data class DataModel(var id: Int?=null, var data_text: String?=null, var data_day:String?=null){
 }

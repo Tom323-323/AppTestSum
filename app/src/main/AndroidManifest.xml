@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppTestSum">
         <activity
-            android:name=".presentation.RVdata"
+            android:name=".presentation.ActivityDataRead"
             android:exported="false" />
         <activity
             android:name=".presentation.MainActivity"

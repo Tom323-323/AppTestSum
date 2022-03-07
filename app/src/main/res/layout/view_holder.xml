@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="195dp"
+    android:layout_height="130dp"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="175dp"
+        android:layout_height="110dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/view_holder_theme"
@@ -20,8 +20,8 @@
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
+        android:layout_width="130dp"
+        android:layout_height="90dp"
         android:layout_marginStart="16dp"
         android:background="@drawable/view_holder_weigh"
         app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
@@ -29,7 +29,7 @@
         app:layout_constraintTop_toTopOf="@+id/constraintLayout" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/day_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
@@ -43,7 +43,7 @@
 
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/data_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/_100_0"
