@@ -6,12 +6,12 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
+
 import com.google.android.material.snackbar.Snackbar
 import com.lost.apptestsum.R
 import com.lost.apptestsum.data.repository.DataRepositoryImp
 import com.lost.apptestsum.data.storage.fireBase.FBstorage
-import com.lost.apptestsum.domain.usecase.ReadData
+
 import com.lost.apptestsum.domain.usecase.SaveData
 import com.lost.apptestsum.domain.model.DataModel
 
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         val dataRepository = DataRepositoryImp(FBstorage())
         val saveData = SaveData(dataRepository = dataRepository)
-        val readData = ReadData(dataRepository = dataRepository)
+
 
         val edit_text = findViewById<EditText>(R.id.et_dataUser)
         val btn_save = findViewById<Button>(R.id.btn_save)
@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         btn_read.setOnClickListener(View.OnClickListener {
             val Intent = Intent(this, ActivityDataRead::class.java)
             startActivity(Intent)
-            finish()
+
         })
 
     }

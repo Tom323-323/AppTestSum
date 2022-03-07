@@ -27,7 +27,7 @@ class AdapterActivityRead(private val dataList: ArrayList<DataModel>): RecyclerV
     override fun getItemCount(): Int {
         return dataList.size
     }
-        public class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+        class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
             val data_text: TextView = itemView.findViewById(R.id.data_text)
             val day_text: TextView = itemView.findViewById(R.id.day_text)
         }

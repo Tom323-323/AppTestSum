@@ -13,7 +13,6 @@ class ActivityDataRead: AppCompatActivity() {
 
     private  lateinit var recyclerView: RecyclerView
     private  lateinit var dataArrayList: ArrayList<DataModel>
-    private  lateinit var adapter: AdapterActivityRead
     private  lateinit var db: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,10 +22,7 @@ class ActivityDataRead: AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
-
         dataArrayList = arrayListOf<DataModel>()
-
-
 
         EventChangeListener()
 
@@ -51,18 +47,11 @@ class ActivityDataRead: AppCompatActivity() {
                 recyclerView.adapter = AdapterActivityRead(dataArrayList)
 
                 }
-
             }
 
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
-
-
         })
-
-
     }
-
-
 }
