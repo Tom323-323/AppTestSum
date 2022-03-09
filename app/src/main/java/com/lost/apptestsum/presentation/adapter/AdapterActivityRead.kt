@@ -1,5 +1,6 @@
 package com.lost.apptestsum.presentation.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.lost.apptestsum.R
 import com.lost.apptestsum.domain.model.DataModel
 
-class AdapterActivityRead(private val dataList: ArrayList<DataModel>,val onClickDelete:(Int)->Unit): RecyclerView.Adapter<AdapterActivityRead.ViewHolder>() {
+class AdapterActivityRead(private val dataList: ArrayList<DataModel>): RecyclerView.Adapter<AdapterActivityRead.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterActivityRead.ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.view_holder,parent,false)
@@ -40,4 +41,11 @@ class AdapterActivityRead(private val dataList: ArrayList<DataModel>,val onClick
 
 
         }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun onClickDelete(index: Int) {
+        dataList.removeAt(index)
+        notifyDataSetChanged()
+
+    }
 }
