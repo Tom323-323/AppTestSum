@@ -22,7 +22,7 @@ class AdapterActivityRead(private val dataList: ArrayList<DataModel>): RecyclerV
 
     override fun onBindViewHolder(holder: AdapterActivityRead.ViewHolder, position: Int) {
        holder.bind(dataList[position],position)
-        val dataModel = dataList[position]
+
 
     }
 
@@ -51,12 +51,12 @@ class AdapterActivityRead(private val dataList: ArrayList<DataModel>): RecyclerV
     private fun onClickDelete(index: Int) {
 
 
-        val dataModel = dataList[index]
 
-        ref.child(dataModel.data_day.toString()).removeValue().addOnCompleteListener(){
+        ref.child(dataList[index].data_day.toString()).removeValue()
             dataList.removeAt(index)
             notifyDataSetChanged()
-        }
+            notifyItemRemoved(index)
+
 
 
     }
