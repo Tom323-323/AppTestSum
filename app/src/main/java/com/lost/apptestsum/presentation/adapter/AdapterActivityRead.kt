@@ -1,11 +1,13 @@
 package com.lost.apptestsum.presentation.adapter
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -14,7 +16,6 @@ import com.lost.apptestsum.domain.model.DataModel
 
 class AdapterActivityRead(private val dataList: ArrayList<DataModel>): RecyclerView.Adapter<AdapterActivityRead.ViewHolder>() {
 
-    private lateinit var db: DatabaseReference
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterActivityRead.ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.view_holder,parent,false)
@@ -53,7 +54,13 @@ class AdapterActivityRead(private val dataList: ArrayList<DataModel>): RecyclerV
 
         dataList.removeAt(index)
         notifyDataSetChanged()
-        db = FirebaseDatabase.getInstance().getReference("DataHolder").removeValue()
+
+        val myRef = FirebaseDatabase.getInstance().reference
+        myRef.child("DataHolder").removeValue().addOnSuccessListener {
+            Log.d("AAA","goodall")
+        }.addOnFailureListener{
+
+        }        //val db = FirebaseDatabase.getInstance().getReference("DataHolder").child(dataList.get(index).toString()).removeValue()
 ////        db.removeValue().addOnSuccessListener {
 ////            dataList[index].toString()
 ////        }.addOnFailureListener{
