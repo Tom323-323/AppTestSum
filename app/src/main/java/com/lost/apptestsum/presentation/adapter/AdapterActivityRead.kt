@@ -7,13 +7,14 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.lost.apptestsum.R
 import com.lost.apptestsum.domain.model.DataModel
 
 class AdapterActivityRead(private val dataList: ArrayList<DataModel>): RecyclerView.Adapter<AdapterActivityRead.ViewHolder>() {
 
-    val ref = FirebaseDatabase.getInstance().getReference("DataHolder")
+    private lateinit var db: DatabaseReference
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterActivityRead.ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.view_holder,parent,false)
@@ -21,7 +22,7 @@ class AdapterActivityRead(private val dataList: ArrayList<DataModel>): RecyclerV
     }
 
     override fun onBindViewHolder(holder: AdapterActivityRead.ViewHolder, position: Int) {
-       holder.bind(dataList[position],position)
+        holder.bind(dataList[position],position)
 
 
     }
@@ -50,12 +51,14 @@ class AdapterActivityRead(private val dataList: ArrayList<DataModel>): RecyclerV
     @SuppressLint("NotifyDataSetChanged")
     private fun onClickDelete(index: Int) {
 
-
-
-        ref.child(dataList[index].data_day.toString()).removeValue()
-            dataList.removeAt(index)
-            notifyDataSetChanged()
-            notifyItemRemoved(index)
+        dataList.removeAt(index)
+        notifyDataSetChanged()
+        db = FirebaseDatabase.getInstance().getReference("DataHolder").removeValue()
+////        db.removeValue().addOnSuccessListener {
+////            dataList[index].toString()
+////        }.addOnFailureListener{
+//
+//        }
 
 
 
