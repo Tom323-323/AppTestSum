@@ -7,9 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.lost.apptestsum.R
 import com.lost.apptestsum.domain.model.DataModel
@@ -57,7 +55,12 @@ class AdapterActivityRead(private val dataList: ArrayList<DataModel>): RecyclerV
         notifyDataSetChanged()
 
         val myRef = FirebaseDatabase.getInstance().reference
-        myRef.child("DataHolder").child("${key.toString()}").removeValue().addOnSuccessListener {
+//        val keyDB = myRef.child("DataHolder")
+//        val ad = myRef.removeValue()
+
+        Log.d("AAA","$key")
+
+        myRef.child("DataHolder").child("$key").removeValue().addOnSuccessListener {
             Log.d("AAA","goodall")
         }.addOnFailureListener{
 

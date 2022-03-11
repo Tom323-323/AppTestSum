@@ -19,7 +19,7 @@ class FBstorage : DataStorage {
 
         databaseR = FirebaseDatabase.getInstance().getReference(DATA_KEY)
         val dataFireModel = DataModel(idData = idData,data_text = text2, data_day = text)
-        databaseR.push().setValue(dataFireModel)
+        databaseR.child(idData.toString()).setValue(dataFireModel)
     }
 
 }
