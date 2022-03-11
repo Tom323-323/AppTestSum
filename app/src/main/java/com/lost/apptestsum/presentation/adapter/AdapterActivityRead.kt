@@ -55,18 +55,12 @@ class AdapterActivityRead(private val dataList: ArrayList<DataModel>): RecyclerV
         notifyDataSetChanged()
 
         val myRef = FirebaseDatabase.getInstance().reference
-//        val keyDB = myRef.child("DataHolder")
-//        val ad = myRef.removeValue()
-
-        Log.d("AAA","$key")
 
         myRef.child("DataHolder").child("$key").removeValue().addOnSuccessListener {
-            Log.d("AAA","goodall")
+
         }.addOnFailureListener{
 
         }
-
-
 
     }
 }
