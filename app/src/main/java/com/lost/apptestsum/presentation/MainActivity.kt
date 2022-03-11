@@ -28,11 +28,11 @@ class MainActivity : AppCompatActivity() {
         btnSave.setOnClickListener(View.OnClickListener {
 
             val text = editText.text.toString()
-            if(text.isEmpty()){
+            if(text==null){
                 Snackbar.make(btnSave,"Введи вес в поле",Snackbar.LENGTH_LONG)
                 .setAction("OK"){ }.show()
             } else {
-            saveData.exect(DataModel( data_text = text, data_day = ""))
+            saveData.exect(DataModel( idData = 0, data_text = text.toString(), data_day = ""))
             Snackbar.make(btnSave,"Данные сохранены",Snackbar.LENGTH_LONG)
                 .setAction("OK"){ }.show()
             editText.text.clear()

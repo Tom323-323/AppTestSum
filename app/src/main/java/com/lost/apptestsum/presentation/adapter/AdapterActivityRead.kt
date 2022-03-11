@@ -51,21 +51,17 @@ class AdapterActivityRead(private val dataList: ArrayList<DataModel>): RecyclerV
 
     @SuppressLint("NotifyDataSetChanged")
     private fun onClickDelete(index: Int) {
+        val key = dataList[index].idData
 
         dataList.removeAt(index)
         notifyDataSetChanged()
 
         val myRef = FirebaseDatabase.getInstance().reference
-        myRef.child("DataHolder").removeValue().addOnSuccessListener {
+        myRef.child("DataHolder").child("${key.toString()}").removeValue().addOnSuccessListener {
             Log.d("AAA","goodall")
         }.addOnFailureListener{
 
-        }        //val db = FirebaseDatabase.getInstance().getReference("DataHolder").child(dataList.get(index).toString()).removeValue()
-////        db.removeValue().addOnSuccessListener {
-////            dataList[index].toString()
-////        }.addOnFailureListener{
-//
-//        }
+        }
 
 
 

@@ -15,11 +15,11 @@ class FBstorage : DataStorage {
     override fun saveDataStorage(saveParam: DataModelStorage) {
         val text = saveParam.dataStorage_day
         val text2 = saveParam.dataStorage_text
-
+        val idData = saveParam.dataStorage_idData
 
         databaseR = FirebaseDatabase.getInstance().getReference(DATA_KEY)
-        val dataFireModel = DataModel(data_text = text2, data_day = text)
-        databaseR.push().setValue(dataFireModel)
+        val dataFireModel = DataModel(idData = idData,data_text = text2, data_day = text)
+        databaseR.child(idData.toString()).setValue(dataFireModel)
     }
 
 }
