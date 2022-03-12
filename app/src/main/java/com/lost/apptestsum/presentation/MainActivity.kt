@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val dataRepository = DataRepositoryImp(FBstorage())
+        val dataRepository = DataRepositoryImp(FBstorage(context = applicationContext))
         val saveData = SaveData(dataRepository = dataRepository)
 
         val editText = findViewById<EditText>(R.id.et_dataUser)
@@ -31,37 +31,22 @@ class MainActivity : AppCompatActivity() {
         val btnRead = findViewById<Button>(R.id.btn_read_data)
 
         btnSave.setOnClickListener(View.OnClickListener {
-
             val text = editText.text.toString()
-            var idData = sharedFun()
 
             if(text.isEmpty()){
                 Snackbar.make(btnSave,"Введи вес в поле",Snackbar.LENGTH_LONG)
                 .setAction("OK"){ }.show()
             } else {
-            saveData.exect(DataModel( idData = idData, data_text = text, data_day = ""))
+            saveData.exect(DataModel( idData = 0, data_text = text, data_day = ""))
             Snackbar.make(btnSave,"Данные сохранены",Snackbar.LENGTH_LONG)
                 .setAction("OK"){ }.show()
             editText.text.clear()
             }
-
         })
 
         btnRead.setOnClickListener(View.OnClickListener {
             val intent = Intent(this, ActivityDataRead::class.java)
             startActivity(intent)
         })
-    }
-
-    @SuppressLint("CommitPrefEdits")
-    fun sharedFun (): Int{
-        val prefs: SharedPreferences = getSharedPreferences("IDcount", MODE_PRIVATE)
-        val editor = prefs.edit()
-
-        var idData = prefs.getInt("IDcount", 1)
-        idData=++idData
-
-        editor.putInt("IDcount",idData).apply()
-        return idData
     }
 }

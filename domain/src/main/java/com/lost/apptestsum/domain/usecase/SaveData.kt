@@ -19,7 +19,6 @@ class SaveData(private val dataRepository: DataRepository) {
 
    fun exect(objData: DataModel){
 
-
        if(objData.data_text.toString().length>3 || objData.data_text.toString().isEmpty()){
 
        } else {

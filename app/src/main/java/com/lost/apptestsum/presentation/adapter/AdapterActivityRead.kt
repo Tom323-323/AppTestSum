@@ -42,6 +42,7 @@ class AdapterActivityRead(private val dataList: ArrayList<DataModel>): RecyclerV
 
                 btn_delete.setOnClickListener{
                     onClickDelete(index)
+                    dataList.clear()
                 }
             }
 
@@ -53,7 +54,6 @@ class AdapterActivityRead(private val dataList: ArrayList<DataModel>): RecyclerV
         val key = dataList[index].idData
         dataList.removeAt(index)
         notifyDataSetChanged()
-
 
         myRef.child("DataHolder").child("$key").removeValue().addOnSuccessListener {
 
