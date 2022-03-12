@@ -2,6 +2,7 @@ package com.lost.apptestsum.domain.usecase
 
 import com.lost.apptestsum.domain.model.DataModel
 import com.lost.apptestsum.domain.repository.DataRepository
+
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -17,7 +18,9 @@ class SaveData(private val dataRepository: DataRepository) {
 
 
    fun exect(objData: DataModel){
-       if(objData.data_text.toString().length>3||objData.data_text.toString().length<1){
+
+
+       if(objData.data_text.toString().length>3 || objData.data_text.toString().isEmpty()){
 
        } else {
            val objData1 = DataModel(idData = objData.idData, data_text = objData.data_text,data_day=day_now)

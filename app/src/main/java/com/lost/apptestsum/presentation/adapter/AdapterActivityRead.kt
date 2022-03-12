@@ -14,6 +14,7 @@ import com.lost.apptestsum.domain.model.DataModel
 
 class AdapterActivityRead(private val dataList: ArrayList<DataModel>): RecyclerView.Adapter<AdapterActivityRead.ViewHolder>() {
 
+    val myRef = FirebaseDatabase.getInstance().reference
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterActivityRead.ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.view_holder,parent,false)
@@ -50,11 +51,9 @@ class AdapterActivityRead(private val dataList: ArrayList<DataModel>): RecyclerV
     @SuppressLint("NotifyDataSetChanged")
     private fun onClickDelete(index: Int) {
         val key = dataList[index].idData
-
         dataList.removeAt(index)
         notifyDataSetChanged()
 
-        val myRef = FirebaseDatabase.getInstance().reference
 
         myRef.child("DataHolder").child("$key").removeValue().addOnSuccessListener {
 

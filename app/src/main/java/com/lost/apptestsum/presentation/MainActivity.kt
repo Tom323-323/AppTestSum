@@ -1,6 +1,8 @@
 package com.lost.apptestsum.presentation
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -14,6 +16,9 @@ import com.lost.apptestsum.domain.usecase.SaveData
 import com.lost.apptestsum.domain.model.DataModel
 
 class MainActivity : AppCompatActivity() {
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -28,8 +33,9 @@ class MainActivity : AppCompatActivity() {
         btnSave.setOnClickListener(View.OnClickListener {
 
             val text = editText.text.toString()
-            val idData = (0..10000).random()
-            if(text==null){
+            var idData = sharedFun()
+
+            if(text.isEmpty()){
                 Snackbar.make(btnSave,"Введи вес в поле",Snackbar.LENGTH_LONG)
                 .setAction("OK"){ }.show()
             } else {
@@ -45,5 +51,17 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, ActivityDataRead::class.java)
             startActivity(intent)
         })
+    }
+
+    @SuppressLint("CommitPrefEdits")
+    fun sharedFun (): Int{
+        val prefs: SharedPreferences = getSharedPreferences("IDcount", MODE_PRIVATE)
+        val editor = prefs.edit()
+
+        var idData = prefs.getInt("IDcount", 1)
+        idData=++idData
+
+        editor.putInt("IDcount",idData).apply()
+        return idData
     }
 }
