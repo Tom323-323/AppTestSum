@@ -13,6 +13,7 @@
         android:layout_width="270dp"
         android:layout_height="250dp"
         android:layout_marginTop="25dp"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -22,6 +23,7 @@
         android:id="@+id/et_mail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/edit_text_theme"
@@ -50,7 +52,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
-        android:id="@+id/sign_in"
+        android:id="@+id/btn_sign"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
@@ -65,7 +67,7 @@
         app:layout_constraintTop_toBottomOf="@+id/et_password" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_reg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -74,10 +76,10 @@
         android:textSize="30sp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        app:layout_constraintEnd_toEndOf="@+id/sign_in"
+        app:layout_constraintEnd_toEndOf="@+id/btn_sign"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/sign_in"
-        app:layout_constraintTop_toBottomOf="@+id/sign_in" />
+        app:layout_constraintStart_toStartOf="@+id/btn_sign"
+        app:layout_constraintTop_toBottomOf="@+id/btn_sign" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
