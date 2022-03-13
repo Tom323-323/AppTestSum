@@ -1,5 +1,4 @@
 package com.lost.apptestsum.data.storage.fireBase
-
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
@@ -10,9 +9,15 @@ import com.lost.apptestsum.data.storage.model.DataModelStorage
 import com.lost.apptestsum.domain.model.DataModel
 
 class FBstorage (context: Context): DataStorage {
-    val prefs: SharedPreferences = context.getSharedPreferences("IDcount", Context.MODE_PRIVATE)
+
+    val prefs: SharedPreferences = context.getSharedPreferences("IDcount", Context.MODE_PRIVATE)//delete
+
     private val DATA_KEY: String = "DataHolder"
     private lateinit var databaseR: DatabaseReference
+
+
+//    val intID = intPreferencesKey("intID")
+//    val dataID: Flow<Int> = context.dataStore.data.map { preferences -> preferences[intID] ?: 0 }
 
 
     override fun saveDataStorage(saveParam: DataModelStorage) {
@@ -34,5 +39,7 @@ class FBstorage (context: Context): DataStorage {
         editor.putInt("IDcount",idData).apply()
         return idData
     }
+
+
 
 }

@@ -9,4 +9,6 @@
     <string name="normal_not_noral_data">normal_not_data</string>
     <string name="_100_0">100.0</string>
     <string name="x">X</string>
+    <string name="sign_in">sign in</string>
+    <string name="registration">Registration</string>
 </resources>
