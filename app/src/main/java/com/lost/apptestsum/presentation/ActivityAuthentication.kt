@@ -8,6 +8,8 @@ import android.widget.EditText
 import android.widget.Toast
 import com.lost.apptestsum.R
 import com.lost.apptestsum.domain.model.UserRegModel
+import com.lost.apptestsum.domain.usecase.Registr
+import com.lost.apptestsum.domain.usecase.Sign
 
 
 class ActivityAuthentication : AppCompatActivity() {
@@ -17,6 +19,8 @@ class ActivityAuthentication : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_authentication)
 
+        val registr = Registr()
+        val sign = Sign()
 
         val btn_sign = findViewById<Button>(R.id.btn_sign)
         val btn_reg = findViewById<Button>(R.id.btn_reg)
@@ -24,12 +28,12 @@ class ActivityAuthentication : AppCompatActivity() {
         val edPassw = findViewById<EditText>(R.id.et_password)// remember delete when realisation in fun getModel()
 
         btn_sign.setOnClickListener(View.OnClickListener {
-            getModel()
 
+            sign.sign_in(getModel())
         })
 
         btn_reg.setOnClickListener(View.OnClickListener {
-            getModel()
+            registr.registration(getModel())
 
         })
     }
@@ -44,7 +48,7 @@ class ActivityAuthentication : AppCompatActivity() {
             val userModel = UserRegModel(mail = mail, password = password)
             return userModel
         } else {
-            Toast.makeText(this, "Enter your email and password!",Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Enter your email and/or password!",Toast.LENGTH_LONG).show()
             val userModel = UserRegModel(mail = "", password = "")
             return userModel
         }

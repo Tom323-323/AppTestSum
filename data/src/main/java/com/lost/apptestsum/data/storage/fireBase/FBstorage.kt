@@ -15,11 +15,6 @@ class FBstorage (context: Context): DataStorage {
     private val DATA_KEY: String = "DataHolder"
     private lateinit var databaseR: DatabaseReference
 
-
-//    val intID = intPreferencesKey("intID")
-//    val dataID: Flow<Int> = context.dataStore.data.map { preferences -> preferences[intID] ?: 0 }
-
-
     override fun saveDataStorage(saveParam: DataModelStorage) {
         val text = saveParam.dataStorage_day
         val text2 = saveParam.dataStorage_text
@@ -32,14 +27,11 @@ class FBstorage (context: Context): DataStorage {
 
     @SuppressLint("CommitPrefEdits")
     fun dataStoradePreference(): Int{
-
         val editor = prefs.edit()
         var idData = prefs.getInt("IDcount", 0)
         idData=++idData
         editor.putInt("IDcount",idData).apply()
         return idData
     }
-
-
 
 }
