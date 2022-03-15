@@ -7,7 +7,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.lost.apptestsum.R
+import com.lost.apptestsum.data.repository.UserRepositoryImp
+import com.lost.apptestsum.data.storage.fireBase.FBauthentication
 import com.lost.apptestsum.domain.model.UserRegModel
+import com.lost.apptestsum.domain.repository.UserRepository
 import com.lost.apptestsum.domain.usecase.Registr
 import com.lost.apptestsum.domain.usecase.Sign
 
@@ -19,22 +22,19 @@ class ActivityAuthentication : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_authentication)
 
-        val registr = Registr()
-        val sign = Sign()
+        val userRepos = UserRepositoryImp(FBauthentication())
+        val registr = Registr(userRepos)
+        val sign = Sign(userRepos)
 
         val btn_sign = findViewById<Button>(R.id.btn_sign)
         val btn_reg = findViewById<Button>(R.id.btn_reg)
-        val edMail = findViewById<EditText>(R.id.et_mail)// remember delete when realisation in fun getModel()
-        val edPassw = findViewById<EditText>(R.id.et_password)// remember delete when realisation in fun getModel()
 
         btn_sign.setOnClickListener(View.OnClickListener {
-
             sign.sign_in(getModel())
         })
 
         btn_reg.setOnClickListener(View.OnClickListener {
             registr.registration(getModel())
-
         })
     }
 
