@@ -13,8 +13,8 @@ import com.lost.apptestsum.data.storage.fireBase.FBstorage
 import com.lost.apptestsum.domain.usecase.SaveData
 import com.lost.apptestsum.domain.model.DataModel
 
-class MainActivity : AppCompatActivity() {
 
+class MainActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

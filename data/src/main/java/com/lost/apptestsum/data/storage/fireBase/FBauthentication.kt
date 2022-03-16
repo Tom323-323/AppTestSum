@@ -13,26 +13,26 @@ import com.lost.apptestsum.data.storage.model.UserModelStorage
 
 class FBauthentication: UserStorage {
 
-    private lateinit var user: FirebaseAuth;
+
 
 
 
     fun registration(dataUser: UserModelStorage){
 
-        val mail = dataUser.mail.toString()
-        val password = dataUser.password.toString()
-        user = Firebase.auth
-        if(mail.isNotEmpty()&&password.isNotEmpty()){
-            user.createUserWithEmailAndPassword(mail,password).addOnCompleteListener(FBauthentication()){ task ->
-                if (task.isSuccessful){
-                   Log.d("AAA","FBauth -- DONE!")
-
-//                    startActivity(Intent(ActivityAuthentication::class.java,MainActivity::class.java))
-
-                }
-
-            }
-        }
+//        val mail = dataUser.mail.toString()
+//        val password = dataUser.password.toString()
+//        user = Firebase.auth
+//        if(mail.isNotEmpty()&&password.isNotEmpty()){
+//            user.createUserWithEmailAndPassword(mail,password).addOnCompleteListener(FBauthentication()){ task ->
+//                if (task.isSuccessful){
+//                   Log.d("AAA","FBauth -- DONE!")
+//
+////                    startActivity(Intent(ActivityAuthentication::class.java,MainActivity::class.java))
+//
+//                }
+//
+//            }
+//        }
 
 
     }

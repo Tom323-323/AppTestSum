@@ -2,11 +2,20 @@ package com.lost.apptestsum.data.storage.fireBase
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.intPreferencesKey
+import androidx.datastore.preferences.preferencesDataStore
 import com.google.firebase.database.*
 import com.google.firebase.database.DatabaseReference
 import com.lost.apptestsum.data.storage.DataStorage
+import com.lost.apptestsum.data.storage.fireBase.FBstorage.Keys.ID_DATA
 import com.lost.apptestsum.data.storage.model.DataModelStorage
 import com.lost.apptestsum.domain.model.DataModel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.runBlocking
 
 class FBstorage (context: Context): DataStorage {
 
@@ -14,6 +23,15 @@ class FBstorage (context: Context): DataStorage {
 
     private val DATA_KEY: String = "DataHolder"
     private lateinit var databaseR: DatabaseReference
+
+    private val Context.dataStore by preferencesDataStore("app_preferences")
+    private val dataStore  = context.dataStore
+
+    private object Keys {
+        val ID_DATA = intPreferencesKey("idData")
+    }
+
+
 
     override fun saveDataStorage(saveParam: DataModelStorage) {
         val text = saveParam.dataStorage_day
@@ -27,12 +45,40 @@ class FBstorage (context: Context): DataStorage {
 
     @SuppressLint("CommitPrefEdits")
     fun dataStoradePreference(): Int{
-        val editor = prefs.edit()
-        var idData = prefs.getInt("IDcount", 0)
+
+        val int = runBlocking { dataStorePreference() }
+
+//        val editor = prefs.edit()
+//        var idData = prefs.getInt("IDcount", 0)
+//        idData=++idData
+//        editor.putInt("IDcount",idData).apply()
+//        return idData
+        return int
+    }
+
+     suspend fun dataStorePreference(): Int{
+        var idData: Int = readDataStoreIdData()
         idData=++idData
-        editor.putInt("IDcount",idData).apply()
+        saveDataStoreIdData(idData)
         return idData
     }
+
+
+    private suspend fun saveDataStoreIdData(idData: Int){
+        dataStore.edit { prefs -> prefs[ID_DATA] = idData }
+
+    }
+
+
+    private fun readDataStoreIdData() {
+
+        val intFlow: Flow<Int> = dataStore.data
+            .map { preferences -> preferences[ID_DATA] ?: 0
+            }
+
+    }
+
+
 
 
 }
