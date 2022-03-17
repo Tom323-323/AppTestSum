@@ -6,21 +6,15 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import com.lost.apptestsum.R
 import com.lost.apptestsum.data.repository.UserRepositoryImp
 import com.lost.apptestsum.data.storage.fireBase.FBauthentication
 import com.lost.apptestsum.domain.model.UserRegModel
-import com.lost.apptestsum.domain.repository.UserRepository
 import com.lost.apptestsum.domain.usecase.Registr
 import com.lost.apptestsum.domain.usecase.Sign
 
 
 class ActivityAuthentication : AppCompatActivity() {
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,8 +23,6 @@ class ActivityAuthentication : AppCompatActivity() {
         val userRepos = UserRepositoryImp(FBauthentication())
         val registr = Registr(userRepos)
         val sign = Sign(userRepos)
-
-
 
         val btn_sign = findViewById<Button>(R.id.btn_sign)
         val btn_reg = findViewById<Button>(R.id.btn_reg)
@@ -43,12 +35,6 @@ class ActivityAuthentication : AppCompatActivity() {
             registr.registration(getModel())
         })
     }
-
-//    public override fun onStart() {
-//        super.onStart()
-//        val currentUser = user.currentUser
-//        updateUI(currentUser)
-//    }
 
     fun getModel():UserRegModel{
         val edMail = findViewById<EditText>(R.id.et_mail)
