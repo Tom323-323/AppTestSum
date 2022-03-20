@@ -21,6 +21,7 @@ class FBauthentication: UserStorage {
 
 //        val mail = dataUser.mail.toString()
 //        val password = dataUser.password.toString()
+//        lateinit var user: FirebaseAuth
 //        user = Firebase.auth
 //        if(mail.isNotEmpty()&&password.isNotEmpty()){
 //            user.createUserWithEmailAndPassword(mail,password).addOnCompleteListener(FBauthentication()){ task ->

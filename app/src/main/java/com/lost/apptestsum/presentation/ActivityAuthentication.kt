@@ -6,7 +6,12 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+
+import com.google.firebase.ktx.Firebase
 import com.lost.apptestsum.R
+
 import com.lost.apptestsum.data.repository.UserRepositoryImp
 import com.lost.apptestsum.data.storage.fireBase.FBauthentication
 import com.lost.apptestsum.domain.model.UserRegModel
@@ -16,9 +21,12 @@ import com.lost.apptestsum.domain.usecase.Sign
 
 class ActivityAuthentication : AppCompatActivity() {
 
+    var user: FirebaseAuth = Firebase.auth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_authentication)
+
 
         val userRepos = UserRepositoryImp(FBauthentication())
         val registr = Registr(userRepos)
@@ -34,6 +42,19 @@ class ActivityAuthentication : AppCompatActivity() {
         btn_reg.setOnClickListener(View.OnClickListener {
             registr.registration(getModel())
         })
+    }
+
+    public override fun onStart() {
+        super.onStart()
+
+        // Check if user is signed in (non-null) and update UI accordingly.
+        val currentUser = user.currentUser
+        if(currentUser!=null){
+
+        }else{
+
+        }
+        //updateUI(currentUser)
     }
 
     fun getModel():UserRegModel{
