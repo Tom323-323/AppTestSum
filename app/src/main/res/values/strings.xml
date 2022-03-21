@@ -11,4 +11,6 @@
     <string name="x">X</string>
     <string name="sign_in">sign in</string>
     <string name="registration">Registration</string>
+    <string name="e_mail">e-mail</string>
+    <string name="password">password</string>
 </resources>
