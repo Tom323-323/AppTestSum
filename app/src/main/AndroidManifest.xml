@@ -10,13 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppTestSum" >
         <activity
-            android:name=".presentation.ActivityAuthentication"
+            android:name=".presentation.MainActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.ActivityDataRead"
             android:exported="false" />
         <activity
-            android:name=".presentation.MainActivity"
+            android:name=".presentation.ActivityAuthentication"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

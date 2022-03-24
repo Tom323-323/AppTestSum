@@ -23,6 +23,7 @@ class ActivityAuthentication : AppCompatActivity() {
 
     var user: FirebaseAuth = Firebase.auth
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_authentication)
@@ -35,27 +36,31 @@ class ActivityAuthentication : AppCompatActivity() {
         val btn_sign = findViewById<Button>(R.id.btn_sign)
         val btn_reg = findViewById<Button>(R.id.btn_reg)
 
+
+
         btn_sign.setOnClickListener(View.OnClickListener {
             sign.sign_in(getModel())
+
         })
 
         btn_reg.setOnClickListener(View.OnClickListener {
             registr.registration(getModel())
+
         })
     }
 
-    public override fun onStart() {
-        super.onStart()
-
-        // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = user.currentUser
-        if(currentUser!=null){
-
-        }else{
-
-        }
-        //updateUI(currentUser)
-    }
+//    public override fun onStart() {
+//        super.onStart()
+//
+//        // Check if user is signed in (non-null) and update UI accordingly.
+//        val currentUser = user.currentUser
+//        if(currentUser!=null){
+//
+//        }else{
+//
+//        }
+//        //updateUI(currentUser)
+//    }
 
     fun getModel():UserRegModel{
         val edMail = findViewById<EditText>(R.id.et_mail)
@@ -70,6 +75,8 @@ class ActivityAuthentication : AppCompatActivity() {
             val userModel = UserRegModel(mail = "", password = "")
             return userModel
         }
+        edMail.text.clear()
+        edPassw.text.clear()
 
     }
 }
