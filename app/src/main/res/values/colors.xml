@@ -8,6 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="green_positive_dialog">#4BB543</color>
+    <color name="rad_negative_dialog">#B54343</color>
+
 
     <color name="background_enter_activity">#9ED676</color>
     <color name="text_color">#AB0C0C0C</color>

@@ -21,7 +21,7 @@
 
     <EditText
         android:id="@+id/et_mail"
-        android:textColor="#BEC5BA"
+        android:textColor="#1F201E"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -44,7 +44,7 @@
         android:id="@+id/et_password"
         android:autofillHints="password"
         android:gravity="center"
-        android:textColor="#BEC5BA"
+        android:textColor="#1F201E"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
