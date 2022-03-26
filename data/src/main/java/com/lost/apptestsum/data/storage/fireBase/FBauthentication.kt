@@ -26,7 +26,18 @@ class FBauthentication: UserStorage {
 
     }
 
-    fun sign(){
+    fun sign(dataUser: UserModelStorage){
+        auth= FirebaseAuth.getInstance()
+        val mail = dataUser.mail.toString()
+        val password = dataUser.password.toString()
+        auth.signInWithEmailAndPassword(mail, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("AAA", "signInWithEmail:success")
+
+                }
+            }
+
 
 
     }

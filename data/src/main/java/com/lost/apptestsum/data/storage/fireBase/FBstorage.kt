@@ -15,7 +15,7 @@ import kotlinx.coroutines.runBlocking
 
 class FBstorage (context: Context): DataStorage {
 
-    private val DATA_KEY: String = "DataHolder"
+    private val DATA_KEY: String = "DataHolder"//name user registr
     private lateinit var databaseR: DatabaseReference
 
     private val Context.dataStore by preferencesDataStore("app_preferences")

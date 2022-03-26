@@ -13,7 +13,7 @@ class UserRepositoryImp(private val fbAuth: FBauthentication): UserRepository {
     }
 
     override fun sign(userData: UserRegModel) {
-        return fbAuth.registration(mapToUserModelStorage(userData))
+        return fbAuth.sign(mapToUserModelStorage(userData))
     }
 
     fun mapToUserModelStorage(userData: UserRegModel):UserModelStorage{
