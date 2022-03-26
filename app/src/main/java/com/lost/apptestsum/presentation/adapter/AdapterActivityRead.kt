@@ -42,7 +42,7 @@ class AdapterActivityRead(private val dataList: ArrayList<DataModel>): RecyclerV
 
                 btn_delete.setOnClickListener{
                     onClickDelete(index)
-                    dataList.clear()
+
                 }
             }
 
