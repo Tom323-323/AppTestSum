@@ -5,7 +5,9 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
+import com.google.firebase.ktx.Firebase
 import com.lost.apptestsum.R
 import com.lost.apptestsum.presentation.adapter.AdapterActivityRead
 import com.lost.apptestsum.domain.model.DataModel
@@ -15,7 +17,7 @@ class ActivityDataRead: AppCompatActivity() {
     private  lateinit var recyclerView: RecyclerView
     private  lateinit var dataArrayList: ArrayList<DataModel>
     private  lateinit var db: DatabaseReference
-
+    val user = Firebase.auth.currentUser
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_read_data)
@@ -31,7 +33,7 @@ class ActivityDataRead: AppCompatActivity() {
 
     private fun EventChangeListener() {
 
-        db = FirebaseDatabase.getInstance().getReference("DataHolder")
+        db = FirebaseDatabase.getInstance().getReference(user!!.uid)
         db.addValueEventListener(object : ValueEventListener{
 
             override fun onDataChange(snapshot: DataSnapshot) {

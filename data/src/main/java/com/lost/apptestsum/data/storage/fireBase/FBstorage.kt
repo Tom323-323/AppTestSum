@@ -4,8 +4,10 @@ import android.content.Context
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.ktx.Firebase
 import com.lost.apptestsum.data.storage.DataStorage
 import com.lost.apptestsum.data.storage.fireBase.FBstorage.Keys.ID_DATA
 import com.lost.apptestsum.data.storage.model.DataModelStorage
@@ -14,8 +16,9 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 
 class FBstorage (context: Context): DataStorage {
+    val user = Firebase.auth.currentUser
 
-    private val DATA_KEY: String = "DataHolder"//name user registr
+    private val DATA_KEY: String = user!!.uid//name user registr
     private lateinit var databaseR: DatabaseReference
 
     private val Context.dataStore by preferencesDataStore("app_preferences")
@@ -29,6 +32,7 @@ class FBstorage (context: Context): DataStorage {
         val text = saveParam.dataStorage_day
         val text2 = saveParam.dataStorage_text
         val idData = dataStoradePreference()
+        //add id user token data_key == token
 
         databaseR = FirebaseDatabase.getInstance().getReference(DATA_KEY)
         val dataFireModel = DataModel(idData = idData,data_text = text2, data_day = text)
@@ -38,6 +42,7 @@ class FBstorage (context: Context): DataStorage {
     @SuppressLint("CommitPrefEdits")
     fun dataStoradePreference(): Int{
         val int = runBlocking { dataStorePreference() }
+        //get int from server если на другом телефоне но с одним аккаунтом
         return int
     }
 

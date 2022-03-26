@@ -11,6 +11,7 @@ class FBauthentication: UserStorage {
 
     fun registration(dataUser: UserModelStorage){
         auth= FirebaseAuth.getInstance()
+
         val mail = dataUser.mail.toString()
         val password = dataUser.password.toString()
         if (mail.isNotEmpty()&&password.isNotEmpty()){
@@ -18,12 +19,8 @@ class FBauthentication: UserStorage {
                 if(task.isSuccessful){
                     Log.d("AAA","registr complete")
                 }
-
             }
         }
-
-
-
     }
 
     fun sign(dataUser: UserModelStorage){
@@ -34,11 +31,9 @@ class FBauthentication: UserStorage {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Log.d("AAA", "signInWithEmail:success")
+                }else{
 
                 }
             }
-
-
-
     }
 }

@@ -39,12 +39,12 @@ class ActivityAuthentication : AppCompatActivity() {
         val btn_reg = findViewById<Button>(R.id.btn_reg)
 
         btn_sign.setOnClickListener(View.OnClickListener {
-            sign.sign_in(getModel())
+            sign.sign_in(getModelAuth())
 
         })
 
         btn_reg.setOnClickListener(View.OnClickListener {
-            registr.registration(getModel())
+            registr.registration(getModelReg())
 
         })
 
@@ -59,7 +59,7 @@ class ActivityAuthentication : AppCompatActivity() {
         }
     }
 
-    fun getModel():UserRegModel{
+    fun getModelReg():UserRegModel{
         val edMail = findViewById<EditText>(R.id.et_mail)
         val edPassw = findViewById<EditText>(R.id.et_password)
         val mail = edMail.text.toString()
@@ -70,6 +70,26 @@ class ActivityAuthentication : AppCompatActivity() {
             val userModel = UserRegModel(mail = mail, password = password)
             createAlertDialog()
             return userModel
+        } else {
+            Toast.makeText(this@ActivityAuthentication, "Enter your email and/or password!",Toast.LENGTH_LONG).show()
+            val userModel = UserRegModel(mail = null, password = null)
+            return userModel
+
+        }
+
+    }
+
+    fun getModelAuth():UserRegModel{
+        val edMail = findViewById<EditText>(R.id.et_mail)
+        val edPassw = findViewById<EditText>(R.id.et_password)
+        val mail = edMail.text.toString()
+        val password = edPassw.text.toString()
+        edMail.text.clear()
+        edPassw.text.clear()
+        if(mail.isNotEmpty()&&password.isNotEmpty()){
+            val userModel = UserRegModel(mail = mail, password = password)
+            return userModel
+
         } else {
             Toast.makeText(this@ActivityAuthentication, "Enter your email and/or password!",Toast.LENGTH_LONG).show()
             val userModel = UserRegModel(mail = null, password = null)
