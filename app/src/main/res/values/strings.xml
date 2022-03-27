@@ -15,4 +15,6 @@
     <string name="password">password</string>
     <string name="registration_is_done">Registration is done!</string>
     <string name="ok">OK</string>
+    <string name="guest_user">lebedew323@gmail.com</string>
+    <string name="logout">logout</string>
 </resources>

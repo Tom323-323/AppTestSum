@@ -43,8 +43,8 @@ class MainActivity : AppCompatActivity() {
         })
 
         btnRead.setOnClickListener(View.OnClickListener {
-            val intent = Intent(this, ActivityDataRead::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, ActivityDataRead::class.java))
+            finish()
         })
     }
 }
