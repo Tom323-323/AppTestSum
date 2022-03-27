@@ -1,6 +1,5 @@
 package com.lost.apptestsum.presentation
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -19,17 +18,16 @@ import com.lost.apptestsum.domain.model.UserRegModel
 import com.lost.apptestsum.domain.usecase.Registr
 import com.lost.apptestsum.domain.usecase.Sign
 
-
-
 class ActivityAuthentication : AppCompatActivity() {
 
-    var user: FirebaseAuth = Firebase.auth
+    val edMail = findViewById<EditText>(R.id.et_mail)
+    val edPassw = findViewById<EditText>(R.id.et_password)
 
+    var user: FirebaseAuth = Firebase.auth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_authentication)
-
 
         val userRepos = UserRepositoryImp(FBauthentication())
         val registr = Registr(userRepos)
@@ -39,16 +37,31 @@ class ActivityAuthentication : AppCompatActivity() {
         val btn_reg = findViewById<Button>(R.id.btn_reg)
 
         btn_sign.setOnClickListener(View.OnClickListener {
-            sign.sign_in(getModelAuth())
+            val mail = edMail.text.toString()
+            val password = edPassw.text.toString()
+            if(mail.isNotEmpty()&&password.isNotEmpty()){
+                val userModel = UserRegModel(mail = mail, password = password)
+                //createAlertDialog()
+                sign.sign_in(userModel)
+            } else{
+                Toast.makeText(this@ActivityAuthentication, "Enter your email and/or password!",Toast.LENGTH_LONG).show()
+            }
 
         })
 
         btn_reg.setOnClickListener(View.OnClickListener {
-            registr.registration(getModelReg())
+            val mail = edMail.text.toString()
+            val password = edPassw.text.toString()
+
+            if(mail.isNotEmpty()&&password.isNotEmpty()){
+                val userModel = UserRegModel(mail = mail, password = password)
+                createAlertDialog()
+                registr.registration(userModel)
+            } else{
+                Toast.makeText(this@ActivityAuthentication, "Enter your email and/or password!",Toast.LENGTH_LONG).show()
+            }
 
         })
-
-
     }
 
     public override fun onStart() {
@@ -57,46 +70,6 @@ class ActivityAuthentication : AppCompatActivity() {
         if(currentUser!=null){
             startActivity(Intent(this@ActivityAuthentication, MainActivity::class.java))
         }
-    }
-
-    fun getModelReg():UserRegModel{
-        val edMail = findViewById<EditText>(R.id.et_mail)
-        val edPassw = findViewById<EditText>(R.id.et_password)
-        val mail = edMail.text.toString()
-        val password = edPassw.text.toString()
-        edMail.text.clear()
-        edPassw.text.clear()
-        if(mail.isNotEmpty()&&password.isNotEmpty()){
-            val userModel = UserRegModel(mail = mail, password = password)
-            createAlertDialog()
-            return userModel
-        } else {
-            Toast.makeText(this@ActivityAuthentication, "Enter your email and/or password!",Toast.LENGTH_LONG).show()
-            val userModel = UserRegModel(mail = null, password = null)
-            return userModel
-
-        }
-
-    }
-
-    fun getModelAuth():UserRegModel{
-        val edMail = findViewById<EditText>(R.id.et_mail)
-        val edPassw = findViewById<EditText>(R.id.et_password)
-        val mail = edMail.text.toString()
-        val password = edPassw.text.toString()
-        edMail.text.clear()
-        edPassw.text.clear()
-        if(mail.isNotEmpty()&&password.isNotEmpty()){
-            val userModel = UserRegModel(mail = mail, password = password)
-            return userModel
-
-        } else {
-            Toast.makeText(this@ActivityAuthentication, "Enter your email and/or password!",Toast.LENGTH_LONG).show()
-            val userModel = UserRegModel(mail = null, password = null)
-            return userModel
-
-        }
-
     }
 
     fun createAlertDialog (){
@@ -111,16 +84,8 @@ class ActivityAuthentication : AppCompatActivity() {
         val btn_ok = view.findViewById<Button>(R.id.btn_ok)
         btn_ok.setOnClickListener(View.OnClickListener {
             dialog.dismiss()
-
-            val intent = Intent(this@ActivityAuthentication, MainActivity::class.java)
-            dialog.context.startActivity(intent)
-
-
+            dialog.context.startActivity(Intent(this@ActivityAuthentication, MainActivity::class.java))
+            finish()
         })
-
     }
-
-
-
-
 }

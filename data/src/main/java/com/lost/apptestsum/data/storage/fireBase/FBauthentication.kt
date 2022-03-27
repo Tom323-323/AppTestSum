@@ -11,13 +11,15 @@ class FBauthentication: UserStorage {
 
     fun registration(dataUser: UserModelStorage){
         auth= FirebaseAuth.getInstance()
-
         val mail = dataUser.mail.toString()
         val password = dataUser.password.toString()
         if (mail.isNotEmpty()&&password.isNotEmpty()){
             auth.createUserWithEmailAndPassword(mail,password).addOnCompleteListener {task->
                 if(task.isSuccessful){
-                    Log.d("AAA","registr complete")
+                    Log.d("AAA","register complete")
+                } else{
+                    Log.d("AAA",task.exception!!.message.toString())
+                    //need a message import to ActivityAuthentication.class
                 }
             }
         }
@@ -27,13 +29,15 @@ class FBauthentication: UserStorage {
         auth= FirebaseAuth.getInstance()
         val mail = dataUser.mail.toString()
         val password = dataUser.password.toString()
-        auth.signInWithEmailAndPassword(mail, password)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Log.d("AAA", "signInWithEmail:success")
-                }else{
-
+        if(mail.isNotEmpty()&&password.isNotEmpty()) {
+            auth.signInWithEmailAndPassword(mail, password)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Log.d("AAA", "signInWithEmail:success")
+                    } else {
+                        //need a message import to ActivityAuthentication.class
+                    }
                 }
-            }
+        }
     }
 }

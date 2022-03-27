@@ -1,21 +1,23 @@
 package com.lost.apptestsum.presentation.adapter
 
 import android.annotation.SuppressLint
-import android.util.Log
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 import com.lost.apptestsum.R
 import com.lost.apptestsum.domain.model.DataModel
 
 class AdapterActivityRead(private val dataList: ArrayList<DataModel>): RecyclerView.Adapter<AdapterActivityRead.ViewHolder>() {
 
     val myRef = FirebaseDatabase.getInstance().reference
-
+    val user = Firebase.auth.currentUser
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterActivityRead.ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.view_holder,parent,false)
         return ViewHolder(itemView)
@@ -51,15 +53,12 @@ class AdapterActivityRead(private val dataList: ArrayList<DataModel>): RecyclerV
 
     @SuppressLint("NotifyDataSetChanged")
     private fun onClickDelete(index: Int) {
+
         val key = dataList[index].idData
         dataList.removeAt(index)
         notifyDataSetChanged()
 
-        myRef.child("DataHolder").child("$key").removeValue().addOnSuccessListener {
-
-        }.addOnFailureListener{
-
-        }
-
+        myRef.child(user!!.uid).child("$key").removeValue()
+        //dataList.clear()
     }
 }

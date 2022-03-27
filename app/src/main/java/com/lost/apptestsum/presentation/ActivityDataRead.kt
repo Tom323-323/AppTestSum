@@ -38,6 +38,7 @@ class ActivityDataRead: AppCompatActivity() {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 Log.d("AAA","Listener")
+                dataArrayList.clear()
                 if(snapshot.exists()){
 
                     for(dataSnapshot in snapshot.children){
@@ -59,8 +60,5 @@ class ActivityDataRead: AppCompatActivity() {
         })
     }
 
-    override fun onStop() {
-        super.onStop()
-        finish()
-    }
+
 }
