@@ -32,7 +32,7 @@ class FBstorage (context: Context): DataStorage {
         val text = saveParam.dataStorage_day
         val text2 = saveParam.dataStorage_text
         val idData = dataStoradePreference()
-        //add id user token data_key == token
+
 
         databaseR = FirebaseDatabase.getInstance().getReference(DATA_KEY)
         val dataFireModel = DataModel(idData = idData,data_text = text2, data_day = text)
@@ -42,7 +42,6 @@ class FBstorage (context: Context): DataStorage {
     @SuppressLint("CommitPrefEdits")
     fun dataStoradePreference(): Int{
         val int = runBlocking { dataStorePreference() }
-        //get int from server если на другом телефоне но с одним аккаунтом
         return int
     }
 

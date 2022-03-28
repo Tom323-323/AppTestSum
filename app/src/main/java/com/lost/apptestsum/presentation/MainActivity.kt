@@ -6,20 +6,23 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.lost.apptestsum.R
 import com.lost.apptestsum.data.repository.DataRepositoryImp
 import com.lost.apptestsum.data.storage.fireBase.FBstorage
 import com.lost.apptestsum.domain.usecase.SaveData
 import com.lost.apptestsum.domain.model.DataModel
 
-
 class MainActivity : AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        mailUserShow()
 
         val dataRepository = DataRepositoryImp(FBstorage(context = applicationContext))
         val saveData = SaveData(dataRepository = dataRepository)
@@ -27,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         val editText = findViewById<EditText>(R.id.et_dataUser)
         val btnSave = findViewById<Button>(R.id.btn_save)
         val btnRead = findViewById<Button>(R.id.btn_read_data)
+
 
         btnSave.setOnClickListener(View.OnClickListener {
             val text = editText.text.toString()
@@ -46,5 +50,14 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, ActivityDataRead::class.java))
             finish()
         })
+
     }
+
+    fun mailUserShow(){
+        val user_mail = findViewById<TextView>(R.id.name_mail)
+        val user = Firebase.auth.currentUser
+        val mailuser = user?.email.toString()
+        user_mail.text = mailuser
+    }
+
 }

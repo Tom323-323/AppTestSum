@@ -31,6 +31,7 @@ class ActivityAuthentication : AppCompatActivity() {
         val userRepos = UserRepositoryImp(FBauthentication())
         val registr = Registr(userRepos)
         val sign = Sign(userRepos)
+
         val edMail = findViewById<EditText>(R.id.et_mail)
         val edPassw = findViewById<EditText>(R.id.et_password)
         val btn_sign = findViewById<Button>(R.id.btn_sign)
@@ -88,4 +89,6 @@ class ActivityAuthentication : AppCompatActivity() {
             finish()
         })
     }
+
+
 }
