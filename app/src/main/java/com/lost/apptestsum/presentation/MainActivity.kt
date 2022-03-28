@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.lost.apptestsum.R
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         val editText = findViewById<EditText>(R.id.et_dataUser)
         val btnSave = findViewById<Button>(R.id.btn_save)
         val btnRead = findViewById<Button>(R.id.btn_read_data)
+        val btn_out = findViewById<TextView>(R.id.tv_logout)
 
 
         btnSave.setOnClickListener(View.OnClickListener {
@@ -49,6 +51,12 @@ class MainActivity : AppCompatActivity() {
         btnRead.setOnClickListener(View.OnClickListener {
             startActivity(Intent(this, ActivityDataRead::class.java))
             finish()
+        })
+
+        btn_out.setOnClickListener(View.OnClickListener {
+            var user = FirebaseAuth.getInstance()
+            user.signOut()
+            startActivity(Intent(this,ActivityAuthentication::class.java))
         })
 
     }
