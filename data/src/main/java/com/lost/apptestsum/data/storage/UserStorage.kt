@@ -4,7 +4,6 @@ import com.lost.apptestsum.data.storage.model.UserModelStorage
 
 interface UserStorage {
 
-    fun registr(saveParam: UserModelStorage){
+    fun registr(saveParam: UserModelStorage)
 
-    }
 }

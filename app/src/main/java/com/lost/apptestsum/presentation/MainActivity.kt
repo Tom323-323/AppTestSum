@@ -54,9 +54,10 @@ class MainActivity : AppCompatActivity() {
         })
 
         btn_out.setOnClickListener(View.OnClickListener {
-            var user = FirebaseAuth.getInstance()
+            val user = FirebaseAuth.getInstance()
             user.signOut()
             startActivity(Intent(this,ActivityAuthentication::class.java))
+            finish()
         })
 
     }

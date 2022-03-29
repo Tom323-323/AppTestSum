@@ -33,7 +33,6 @@ class FBstorage (context: Context): DataStorage {
         val text2 = saveParam.dataStorage_text
         val idData = dataStoradePreference()
 
-
         databaseR = FirebaseDatabase.getInstance().getReference(DATA_KEY)
         val dataFireModel = DataModel(idData = idData,data_text = text2, data_day = text)
         databaseR.child(idData.toString()).setValue(dataFireModel)

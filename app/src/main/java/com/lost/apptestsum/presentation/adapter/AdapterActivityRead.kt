@@ -25,8 +25,6 @@ class AdapterActivityRead(private val dataList: ArrayList<DataModel>): RecyclerV
 
     override fun onBindViewHolder(holder: AdapterActivityRead.ViewHolder, position: Int) {
         holder.bind(dataList[position],position)
-
-
     }
 
     override fun getItemCount(): Int {
@@ -48,7 +46,6 @@ class AdapterActivityRead(private val dataList: ArrayList<DataModel>): RecyclerV
                 }
             }
 
-
         }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -59,6 +56,6 @@ class AdapterActivityRead(private val dataList: ArrayList<DataModel>): RecyclerV
         notifyDataSetChanged()
 
         myRef.child(user!!.uid).child("$key").removeValue()
-        //dataList.clear()
+
     }
 }

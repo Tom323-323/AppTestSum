@@ -20,8 +20,6 @@ import com.lost.apptestsum.domain.usecase.Sign
 
 class ActivityAuthentication : AppCompatActivity() {
 
-
-
     var user: FirebaseAuth = Firebase.auth
 
     override fun onCreate(savedInstanceState: Bundle?) {

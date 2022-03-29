@@ -1,8 +1,6 @@
 package com.lost.apptestsum.presentation
 
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -38,7 +36,6 @@ class ActivityDataRead: AppCompatActivity() {
         db.addValueEventListener(object : ValueEventListener{
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                Log.d("AAA","Listener")
                 dataArrayList.clear()
                 if(snapshot.exists()){
 
@@ -51,7 +48,6 @@ class ActivityDataRead: AppCompatActivity() {
 
                 recyclerView.adapter = AdapterActivityRead(dataArrayList)
 
-
                 }
             }
 
@@ -60,6 +56,5 @@ class ActivityDataRead: AppCompatActivity() {
             }
         })
     }
-
 
 }

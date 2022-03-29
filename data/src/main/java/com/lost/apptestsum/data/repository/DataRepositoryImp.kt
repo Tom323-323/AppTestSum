@@ -16,5 +16,4 @@ class DataRepositoryImp (private val fBstorage: FBstorage): DataRepository {
         return DataModelStorage(dataStorage_idData = saveParam.idData,dataStorage_day = saveParam.data_day, dataStorage_text = saveParam.data_text)
     }
 
-
 }

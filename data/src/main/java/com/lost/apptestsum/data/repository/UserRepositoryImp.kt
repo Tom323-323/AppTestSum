@@ -7,9 +7,8 @@ import com.lost.apptestsum.domain.repository.UserRepository
 
 class UserRepositoryImp(private val fbAuth: FBauthentication): UserRepository {
 
-
     override fun registr(userData: UserRegModel) {
-        return fbAuth.registration(mapToUserModelStorage(userData))
+        return fbAuth.registr(mapToUserModelStorage(userData))
     }
 
     override fun sign(userData: UserRegModel) {
