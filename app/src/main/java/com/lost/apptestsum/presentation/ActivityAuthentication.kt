@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
@@ -40,7 +41,7 @@ class ActivityAuthentication : AppCompatActivity() {
             val password = edPassw.text.toString()
             if(mail.isNotEmpty()&&password.isNotEmpty()){
                 val userModel = UserRegModel(mail = mail, password = password)
-                //createAlertDialog()
+                createAlertDialog(0)
                 sign.sign_in(userModel)
             } else{
                 Toast.makeText(this@ActivityAuthentication, "Enter your email and/or password!",Toast.LENGTH_LONG).show()
@@ -54,7 +55,7 @@ class ActivityAuthentication : AppCompatActivity() {
 
             if(mail.isNotEmpty()&&password.isNotEmpty()){
                 val userModel = UserRegModel(mail = mail, password = password)
-                createAlertDialog()
+                createAlertDialog(1)
                 registr.registration(userModel)
             } else{
                 Toast.makeText(this@ActivityAuthentication, "Enter your email and/or password!",Toast.LENGTH_LONG).show()
@@ -67,25 +68,68 @@ class ActivityAuthentication : AppCompatActivity() {
         super.onStart()
         val currentUser = user.currentUser
         if(currentUser!=null){
-            startActivity(Intent(this@ActivityAuthentication, MainActivity::class.java))
+            startActivity(Intent(
+                this@ActivityAuthentication,
+                MainActivity::class.java
+            ))
         }
     }
 
-    fun createAlertDialog (){
-        val view = View.inflate(this@ActivityAuthentication, R.layout.alert_dialog,null)
-        val builder = AlertDialog.Builder(this@ActivityAuthentication)
-        builder.setView(view)
+    private fun createAlertDialog (index:Int){
 
-        val dialog = builder.create()
-        dialog.show()
-        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        if(index==1) {
+            val view = View.inflate(
+                this@ActivityAuthentication,
+                R.layout.alert_dialog,
+                null
+            )
+            val builder = AlertDialog.Builder(this@ActivityAuthentication).apply {
+                setView(view)
+            }
 
-        val btn_ok = view.findViewById<Button>(R.id.btn_ok)
-        btn_ok.setOnClickListener(View.OnClickListener {
-            dialog.dismiss()
-            dialog.context.startActivity(Intent(this@ActivityAuthentication, MainActivity::class.java))
-            finish()
-        })
+            val dialog = builder.create()
+            dialog.show()
+            dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+            val btn_ok = view.findViewById<Button>(R.id.btn_ok)
+            btn_ok.setOnClickListener(View.OnClickListener {
+                dialog.dismiss()
+                dialog.context.startActivity(
+                    Intent(
+                        this@ActivityAuthentication,
+                        MainActivity::class.java
+                    )
+                )
+                finish()
+            })
+        } else{
+            val view = View.inflate(
+                this@ActivityAuthentication,
+                R.layout.alert_dialog,
+                null
+            )
+            val builder = AlertDialog.Builder(this@ActivityAuthentication).apply {
+                setView(view)
+            }
+
+            val dialog = builder.create()
+            dialog.show()
+            dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+            val btn_ok = view.findViewById<Button>(R.id.btn_ok)
+            val dialog_text = view.findViewById<TextView>(R.id.dialog_text)
+            dialog_text.text = getText(R.string.you_are_logged)
+            btn_ok.setOnClickListener(View.OnClickListener {
+                dialog.dismiss()
+                dialog.context.startActivity(
+                    Intent(
+                        this@ActivityAuthentication,
+                        MainActivity::class.java
+                    )
+                )
+                finish()
+            })
+        }
     }
 
 

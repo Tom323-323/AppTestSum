@@ -8,10 +8,10 @@ import com.lost.apptestsum.data.storage.model.UserModelStorage
 class FBauthentication: UserStorage {
     private lateinit var auth: FirebaseAuth
 
-    fun sign(dataUser: UserModelStorage){
+    override fun sign(saveParam: UserModelStorage){
         auth= FirebaseAuth.getInstance()
-        val mail = dataUser.mail.toString()
-        val password = dataUser.password.toString()
+        val mail = saveParam.mail.toString()
+        val password = saveParam.password.toString()
         if(mail.isNotEmpty()&&password.isNotEmpty()) {
             auth.signInWithEmailAndPassword(mail, password)
                 .addOnCompleteListener { task ->

@@ -6,4 +6,6 @@ interface UserStorage {
 
     fun registr(saveParam: UserModelStorage)
 
+    fun sign(saveParam: UserModelStorage)
+
 }

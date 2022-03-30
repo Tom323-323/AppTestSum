@@ -65,8 +65,7 @@ class MainActivity : AppCompatActivity() {
     fun mailUserShow(){
         val user_mail = findViewById<TextView>(R.id.name_mail)
         val user = Firebase.auth.currentUser
-        val mailuser = user?.email.toString()
-        user_mail.text = mailuser
+        user_mail.text = user?.email.toString()
     }
 
 }
