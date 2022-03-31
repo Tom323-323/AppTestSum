@@ -76,22 +76,20 @@ class ActivityAuthentication : AppCompatActivity() {
     }
 
     private fun createAlertDialog (index:Int){
-
-        if(index==1) {
-            val view = View.inflate(
+         val view = View.inflate(
                 this@ActivityAuthentication,
                 R.layout.alert_dialog,
-                null
-            )
+                null)
             val builder = AlertDialog.Builder(this@ActivityAuthentication).apply {
-                setView(view)
-            }
+                setView(view)}
 
             val dialog = builder.create()
             dialog.show()
             dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-
             val btn_ok = view.findViewById<Button>(R.id.btn_ok)
+            if(index==0){val dialog_text = view.findViewById<TextView>(R.id.dialog_text)
+                dialog_text.text = getText(R.string.you_are_logged)}
+
             btn_ok.setOnClickListener(View.OnClickListener {
                 dialog.dismiss()
                 dialog.context.startActivity(
@@ -102,35 +100,7 @@ class ActivityAuthentication : AppCompatActivity() {
                 )
                 finish()
             })
-        } else{
-            val view = View.inflate(
-                this@ActivityAuthentication,
-                R.layout.alert_dialog,
-                null
-            )
-            val builder = AlertDialog.Builder(this@ActivityAuthentication).apply {
-                setView(view)
-            }
-
-            val dialog = builder.create()
-            dialog.show()
-            dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-
-            val btn_ok = view.findViewById<Button>(R.id.btn_ok)
-            val dialog_text = view.findViewById<TextView>(R.id.dialog_text)
-            dialog_text.text = getText(R.string.you_are_logged)
-            btn_ok.setOnClickListener(View.OnClickListener {
-                dialog.dismiss()
-                dialog.context.startActivity(
-                    Intent(
-                        this@ActivityAuthentication,
-                        MainActivity::class.java
-                    )
-                )
-                finish()
-            })
-        }
-    }
+         }
 
 
 }
