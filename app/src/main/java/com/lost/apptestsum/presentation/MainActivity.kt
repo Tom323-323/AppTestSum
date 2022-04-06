@@ -26,18 +26,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        vm = ViewModelProvider(this).get(MainViewModel::class.java)
+        vm = ViewModelProvider(this, MainViewModelFactory(this))
+            .get(MainViewModel::class.java)
 
         mailUserShow()
-
-        val dataRepository = DataRepositoryImp(FBstorage(context = applicationContext))
-
 
         val editText = findViewById<EditText>(R.id.et_dataUser)
         val btnSave = findViewById<Button>(R.id.btn_save)
         val btnRead = findViewById<Button>(R.id.btn_read_data)
         val btn_out = findViewById<TextView>(R.id.tv_logout)
-
 
         btnSave.setOnClickListener(View.OnClickListener {
             val text = editText.text.toString()

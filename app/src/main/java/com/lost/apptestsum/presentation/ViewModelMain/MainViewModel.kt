@@ -17,10 +17,7 @@ import com.lost.apptestsum.domain.usecase.SaveData
 import com.lost.apptestsum.presentation.ActivityDataRead
 
 
-class MainViewModel: ViewModel() {
-
-    val dataRepository = DataRepositoryImp(FBstorage(context = applicationContext))
-    val saveData = SaveData(dataRepository = dataRepository)
+class MainViewModel(private val dataRepository: DataRepositoryImp,private val saveData:SaveData): ViewModel() {
 
     fun save (text:String){
         saveData.exect(DataModel( idData = 0, data_text = text, data_day = ""))
