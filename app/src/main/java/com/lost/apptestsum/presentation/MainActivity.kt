@@ -9,14 +9,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import com.lost.apptestsum.R
-import com.lost.apptestsum.data.repository.DataRepositoryImp
-import com.lost.apptestsum.data.storage.fireBase.FBstorage
-import com.lost.apptestsum.domain.usecase.SaveData
-import com.lost.apptestsum.domain.model.DataModel
 import com.lost.apptestsum.presentation.ViewModelMain.MainViewModel
 
 class MainActivity : AppCompatActivity() {

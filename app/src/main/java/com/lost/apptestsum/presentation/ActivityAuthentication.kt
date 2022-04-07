@@ -36,7 +36,7 @@ class ActivityAuthentication : AppCompatActivity() {
         val btn_sign = findViewById<Button>(R.id.btn_sign)
         val btn_reg = findViewById<Button>(R.id.btn_reg)
 
-        btn_sign.setOnClickListener(View.OnClickListener {
+        btn_sign.setOnClickListener(View.OnClickListener {//добавить проверку логин и пароль
             val mail = edMail.text.toString()
             val password = edPassw.text.toString()
             if(mail.isNotEmpty()&&password.isNotEmpty()){
@@ -75,7 +75,7 @@ class ActivityAuthentication : AppCompatActivity() {
         }
     }
 
-    private fun createAlertDialog (index:Int){
+    private fun createAlertDialog (index:Int){// перенести в usecase!!!!!
          val view = View.inflate(
                 this@ActivityAuthentication,
                 R.layout.alert_dialog,
