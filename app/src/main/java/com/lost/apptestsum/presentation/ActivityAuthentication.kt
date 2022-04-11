@@ -9,15 +9,13 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.lost.apptestsum.R
-import com.lost.apptestsum.data.repository.UserRepositoryImp
-import com.lost.apptestsum.data.storage.fireBase.FBauthentication
 import com.lost.apptestsum.domain.model.UserRegModel
-import com.lost.apptestsum.domain.usecase.Registr
-import com.lost.apptestsum.domain.usecase.Sign
+import com.lost.apptestsum.presentation.ViewModelMain.ActivityAuthViewModel
 
 class ActivityAuthentication : AppCompatActivity() {
 
@@ -27,9 +25,7 @@ class ActivityAuthentication : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_authentication)
 
-        val userRepos = UserRepositoryImp(FBauthentication())
-        val registr = Registr(userRepos)
-        val sign = Sign(userRepos)
+        val vm = ViewModelProvider(this).get(ActivityAuthViewModel::class.java)
 
         val edMail = findViewById<EditText>(R.id.et_mail)
         val edPassw = findViewById<EditText>(R.id.et_password)
@@ -37,12 +33,13 @@ class ActivityAuthentication : AppCompatActivity() {
         val btn_reg = findViewById<Button>(R.id.btn_reg)
 
         btn_sign.setOnClickListener(View.OnClickListener {//добавить проверку логин и пароль
+
             val mail = edMail.text.toString()
             val password = edPassw.text.toString()
+
             if(mail.isNotEmpty()&&password.isNotEmpty()){
-                val userModel = UserRegModel(mail = mail, password = password)
+                vm.sign(UserRegModel(mail = mail, password = password))
                 createAlertDialog(0)
-                sign.sign_in(userModel)
             } else{
                 Toast.makeText(this@ActivityAuthentication, "Enter your email and/or password!",Toast.LENGTH_LONG).show()
             }
@@ -50,13 +47,13 @@ class ActivityAuthentication : AppCompatActivity() {
         })
 
         btn_reg.setOnClickListener(View.OnClickListener {
+
             val mail = edMail.text.toString()
             val password = edPassw.text.toString()
 
             if(mail.isNotEmpty()&&password.isNotEmpty()){
-                val userModel = UserRegModel(mail = mail, password = password)
+                vm.registr(UserRegModel(mail = mail, password = password))
                 createAlertDialog(1)
-                registr.registration(userModel)
             } else{
                 Toast.makeText(this@ActivityAuthentication, "Enter your email and/or password!",Toast.LENGTH_LONG).show()
             }

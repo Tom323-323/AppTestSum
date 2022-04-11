@@ -15,13 +15,15 @@ import com.lost.apptestsum.domain.model.DataModel
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 
+private val Context.dataStore by preferencesDataStore("app_preferences")
+
 class FBstorage (context: Context): DataStorage {
     val user = Firebase.auth.currentUser
 
     private val DATA_KEY: String = user!!.uid//name user registr
     private lateinit var databaseR: DatabaseReference
 
-    private val Context.dataStore by preferencesDataStore("app_preferences")
+
     private val dataStore  = context.dataStore
 
     private object Keys {
