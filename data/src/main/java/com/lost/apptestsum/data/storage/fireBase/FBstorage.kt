@@ -20,7 +20,7 @@ private val Context.dataStore by preferencesDataStore("app_preferences")
 class FBstorage (context: Context): DataStorage {
     val user = Firebase.auth.currentUser
 
-    private val DATA_KEY: String = user!!.uid//name user registr
+    private val DATA_KEY: String by lazy { user!!.uid }//name user registr
     private lateinit var databaseR: DatabaseReference
 
 

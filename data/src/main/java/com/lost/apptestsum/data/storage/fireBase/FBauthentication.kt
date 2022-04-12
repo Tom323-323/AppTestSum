@@ -10,14 +10,17 @@ class FBauthentication: UserStorage {
 
     override fun sign(saveParam: UserModelStorage){
         auth= FirebaseAuth.getInstance()
+
         val mail = saveParam.mail.toString()
         val password = saveParam.password.toString()
+
         if(mail.isNotEmpty()&&password.isNotEmpty()) {
             auth.signInWithEmailAndPassword(mail, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         Log.d("AAA", "signInWithEmail:success")
                     } else {
+                        Log.d("AAA", "signInWithEmail:error")
                         //need a message import to ActivityAuthentication.class
                     }
                 }

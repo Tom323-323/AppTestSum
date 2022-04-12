@@ -39,12 +39,11 @@ class ActivityAuthentication : AppCompatActivity() {
 
             if(mail.isNotEmpty()&&password.isNotEmpty()){
                 vm.sign(UserRegModel(mail = mail, password = password))
-                createAlertDialog(0)
+                createAlertDialog(0)// need message error sign!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! FB auth
             } else{
                 Toast.makeText(this@ActivityAuthentication, "Enter your email and/or password!",Toast.LENGTH_LONG).show()
             }
-
-        })
+       })
 
         btn_reg.setOnClickListener(View.OnClickListener {
 
@@ -57,7 +56,6 @@ class ActivityAuthentication : AppCompatActivity() {
             } else{
                 Toast.makeText(this@ActivityAuthentication, "Enter your email and/or password!",Toast.LENGTH_LONG).show()
             }
-
         })
     }
 
@@ -73,8 +71,7 @@ class ActivityAuthentication : AppCompatActivity() {
     }
 
     private fun createAlertDialog (index:Int){// перенести в usecase!!!!!
-         val view = View.inflate(
-                this@ActivityAuthentication,
+         val view = View.inflate(this@ActivityAuthentication,
                 R.layout.alert_dialog,
                 null)
             val builder = AlertDialog.Builder(this@ActivityAuthentication).apply {
@@ -84,6 +81,7 @@ class ActivityAuthentication : AppCompatActivity() {
             dialog.show()
             dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
             val btn_ok = view.findViewById<Button>(R.id.btn_ok)
+
             if(index==0){val dialog_text = view.findViewById<TextView>(R.id.dialog_text)
                 dialog_text.text = getText(R.string.you_are_logged)}
 
