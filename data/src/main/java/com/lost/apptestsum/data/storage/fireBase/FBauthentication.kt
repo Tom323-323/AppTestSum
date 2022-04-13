@@ -6,7 +6,14 @@ import com.lost.apptestsum.data.storage.UserStorage
 import com.lost.apptestsum.data.storage.model.UserModelStorage
 
 class FBauthentication: UserStorage {
+
+    object status {
+        var st: Int = 0
+    }
+
+
     private lateinit var auth: FirebaseAuth
+
 
     override fun sign(saveParam: UserModelStorage){
         auth= FirebaseAuth.getInstance()
@@ -19,9 +26,10 @@ class FBauthentication: UserStorage {
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         Log.d("AAA", "signInWithEmail:success")
+                        status.st = 1
                     } else {
                         Log.d("AAA", "signInWithEmail:error")
-                        //need a message import to ActivityAuthentication.class
+                        status.st = 2
                     }
                 }
         }
@@ -35,9 +43,11 @@ class FBauthentication: UserStorage {
             auth.createUserWithEmailAndPassword(mail,password).addOnCompleteListener {task->
                 if(task.isSuccessful){
                     Log.d("AAA","register complete")
+                    status.st = 3
                 } else{
                     Log.d("AAA",task.exception!!.message.toString())
                     //need a message import to ActivityAuthentication.class
+                    status.st = 4
                 }
             }
         }

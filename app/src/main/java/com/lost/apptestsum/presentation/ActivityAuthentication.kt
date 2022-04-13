@@ -14,12 +14,15 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.lost.apptestsum.R
+import com.lost.apptestsum.data.storage.fireBase.FBauthentication
 import com.lost.apptestsum.domain.model.UserRegModel
 import com.lost.apptestsum.presentation.ViewModelMain.ActivityAuthViewModel
 
 class ActivityAuthentication : AppCompatActivity() {
 
     var user: FirebaseAuth = Firebase.auth
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +42,13 @@ class ActivityAuthentication : AppCompatActivity() {
 
             if(mail.isNotEmpty()&&password.isNotEmpty()){
                 vm.sign(UserRegModel(mail = mail, password = password))
-                createAlertDialog(0)// need message error sign!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! FB auth
+                    val i = FBauthentication.status.st /// в один метод в зависимости от значения статус
+                    if (i == 1){
+                            createAlertDialog(0)
+                        } else {
+                            createAlertDialog(0)////error
+                    }
+
             } else{
                 Toast.makeText(this@ActivityAuthentication, "Enter your email and/or password!",Toast.LENGTH_LONG).show()
             }
@@ -82,7 +91,7 @@ class ActivityAuthentication : AppCompatActivity() {
             dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
             val btn_ok = view.findViewById<Button>(R.id.btn_ok)
 
-            if(index==0){val dialog_text = view.findViewById<TextView>(R.id.dialog_text)
+            if(index==0){val dialog_text = view.findViewById<TextView>(R.id.dialog_text)///when!!!!!!!!
                 dialog_text.text = getText(R.string.you_are_logged)}
 
             btn_ok.setOnClickListener(View.OnClickListener {
