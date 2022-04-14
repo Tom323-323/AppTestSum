@@ -18,5 +18,7 @@
     <string name="guest_user">lebedew323@gmail.com</string>
     <string name="logout">logout</string>
     <string name="you_are_logged">You are logged!</string>
+    <string name="error">Error! try again.</string>
+    <string name="wrong">Wrong mail or password!</string>
     <string name="image">image</string>
 </resources>

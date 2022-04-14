@@ -45,8 +45,8 @@ class ActivityAuthentication : AppCompatActivity() {
                     val i = FBauthentication.status.st /// в один метод в зависимости от значения статус
                     if (i == 1){
                             createAlertDialog(0)
-                        } else {
-                            createAlertDialog(0)////error
+                        } else{
+                            createAlertDialog(2)
                     }
 
             } else{
@@ -61,7 +61,12 @@ class ActivityAuthentication : AppCompatActivity() {
 
             if(mail.isNotEmpty()&&password.isNotEmpty()){
                 vm.registr(UserRegModel(mail = mail, password = password))
-                createAlertDialog(1)
+                val i = FBauthentication.status.st /// в один метод в зависимости от значения статус
+                if (i == 3){
+                    createAlertDialog(1)
+                } else{
+                    createAlertDialog(3)
+                }
             } else{
                 Toast.makeText(this@ActivityAuthentication, "Enter your email and/or password!",Toast.LENGTH_LONG).show()
             }
@@ -79,32 +84,41 @@ class ActivityAuthentication : AppCompatActivity() {
         }
     }
 
-    private fun createAlertDialog (index:Int){// перенести в usecase!!!!!
-         val view = View.inflate(this@ActivityAuthentication,
-                R.layout.alert_dialog,
-                null)
-            val builder = AlertDialog.Builder(this@ActivityAuthentication).apply {
-                setView(view)}
+    private fun createAlertDialog (index:Int){
 
-            val dialog = builder.create()
-            dialog.show()
-            dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-            val btn_ok = view.findViewById<Button>(R.id.btn_ok)
+            if(index == 0 && index == 1){
+                val view = View.inflate(this@ActivityAuthentication,R.layout.alert_dialog,null)
+                val builder = AlertDialog.Builder(this@ActivityAuthentication).apply {setView(view)}
+                val dialog = builder.create()
+                dialog.show()
+                dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+                val btn_ok = view.findViewById<Button>(R.id.btn_ok)
+                val dialog_text = view.findViewById<TextView>(R.id.dialog_text)
 
-            if(index==0){val dialog_text = view.findViewById<TextView>(R.id.dialog_text)///when!!!!!!!!
-                dialog_text.text = getText(R.string.you_are_logged)}
+                if(index == 0){dialog_text.text = getText(R.string.registration_is_done)}else{dialog_text.text = getText(R.string.you_are_logged)}
+                btn_ok.setOnClickListener(View.OnClickListener {
+                    dialog.dismiss()
+                    dialog.context.startActivity(Intent(this@ActivityAuthentication,MainActivity::class.java))
+                    finish()
+                })
 
-            btn_ok.setOnClickListener(View.OnClickListener {
-                dialog.dismiss()
-                dialog.context.startActivity(
-                    Intent(
-                        this@ActivityAuthentication,
-                        MainActivity::class.java
-                    )
-                )
-                finish()
-            })
-         }
+            } else if(index == 2&&index == 3){
+                val view = View.inflate(this@ActivityAuthentication,R.layout.alert_dialog_error,null)
+                val builder = AlertDialog.Builder(this@ActivityAuthentication).apply {setView(view)}
+                val dialog = builder.create()
+                dialog.show()
+                dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+                val btn_ok = view.findViewById<Button>(R.id.btn_ok)
+                val dialog_text = view.findViewById<TextView>(R.id.dialog_text)
+
+                if(index == 2){dialog_text.text = getText(R.string.error)}else{dialog_text.text = getText(R.string.wrong)}
+
+                btn_ok.setOnClickListener(View.OnClickListener {
+                    dialog.dismiss()
+                    finish()
+                })
+            }
+    }
 
 
 }

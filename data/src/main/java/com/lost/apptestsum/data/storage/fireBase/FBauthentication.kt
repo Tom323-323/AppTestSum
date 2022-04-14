@@ -46,7 +46,6 @@ class FBauthentication: UserStorage {
                     status.st = 3
                 } else{
                     Log.d("AAA",task.exception!!.message.toString())
-                    //need a message import to ActivityAuthentication.class
                     status.st = 4
                 }
             }

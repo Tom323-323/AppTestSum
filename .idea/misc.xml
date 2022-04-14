@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/AppTestSum/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.258" />
         <entry key="..\:/AppTestSum/app/src/main/res/drawable/btn_aler_dialog.xml" value="0.258" />
+        <entry key="..\:/AppTestSum/app/src/main/res/drawable/btn_aler_dialog_wrong.xml" value="0.3675" />
         <entry key="..\:/AppTestSum/app/src/main/res/drawable/btn_theme.xml" value="0.257" />
         <entry key="..\:/AppTestSum/app/src/main/res/drawable/dialog_theme.xml" value="0.258" />
         <entry key="..\:/AppTestSum/app/src/main/res/drawable/edit_text_theme.xml" value="0.257" />
@@ -19,6 +20,7 @@
         <entry key="..\:/AppTestSum/app/src/main/res/layout/activity_read_data.xml" value="0.36666666666666664" />
         <entry key="..\:/AppTestSum/app/src/main/res/layout/activity_rvdata.xml" value="0.36666666666666664" />
         <entry key="..\:/AppTestSum/app/src/main/res/layout/alert_dialog.xml" value="0.25" />
+        <entry key="..\:/AppTestSum/app/src/main/res/layout/alert_dialog_error.xml" value="0.55" />
         <entry key="..\:/AppTestSum/app/src/main/res/layout/recycler_view_screen.xml" value="0.36666666666666664" />
         <entry key="..\:/AppTestSum/app/src/main/res/layout/splash_screen.xml" value="0.25" />
         <entry key="..\:/AppTestSum/app/src/main/res/layout/view_holder.xml" value="0.36666666666666664" />
