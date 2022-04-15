@@ -10,10 +10,7 @@ class FBauthentication: UserStorage {
     object status {
         var st: Int = 0
     }
-
-
     private lateinit var auth: FirebaseAuth
-
 
     override fun sign(saveParam: UserModelStorage){
         auth= FirebaseAuth.getInstance()
