@@ -65,11 +65,8 @@ class ActivityAuthentication : AppCompatActivity() {
                 vm.registr(UserRegModel(mail = mail, password = password))
                 val i = FBauthentication.status.st /// в один метод в зависимости от значения статус
                 Log.d("AAA", i.toString())
-                if (i.toString().equals(3)){
-                    createAlertDialog(1)
-                } else{
-                    createAlertDialog(3)
-                }
+                if (i.toString().equals(3)){createAlertDialog(1)}
+                else{createAlertDialog(3)}
             } else{
                 Toast.makeText(this@ActivityAuthentication, "Enter your email and/or password!",Toast.LENGTH_LONG).show()
             }
@@ -79,12 +76,7 @@ class ActivityAuthentication : AppCompatActivity() {
     public override fun onStart() {
         super.onStart()
         val currentUser = user.currentUser
-        if(currentUser!=null){
-            startActivity(Intent(
-                this@ActivityAuthentication,
-                MainActivity::class.java
-            ))
-        }
+        if(currentUser!=null){startActivity(Intent(this@ActivityAuthentication, MainActivity::class.java))}
     }
 
     private fun createAlertDialog (index:Int){
@@ -114,11 +106,10 @@ class ActivityAuthentication : AppCompatActivity() {
                 val btn_ok = view.findViewById<Button>(R.id.btn_ok)
                 val dialog_text = view.findViewById<TextView>(R.id.dialog_text)
 
-                if(index == 2){dialog_text.text = getText(R.string.error)}else{dialog_text.text = getText(R.string.wrong)}
+                if(index == 2){dialog_text.text = getText(R.string.wrong)}else{dialog_text.text = getText(R.string.error)}
 
                 btn_ok.setOnClickListener(View.OnClickListener {
                     dialog.dismiss()
-
                 })
             }
     }
