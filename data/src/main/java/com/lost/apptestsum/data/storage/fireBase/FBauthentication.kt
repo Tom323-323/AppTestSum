@@ -21,12 +21,11 @@ class FBauthentication: UserStorage {
 
         auth.signInWithEmailAndPassword(mail, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                Log.d("AAA", "signInWithEmail:success")
                 status.st = 1
+                Log.d("AAA","сервер вход выполнен + ${status.st}")
             } else {
-                Log.d("AAA", "signInWithEmail:error")
                 status.st = 2
-                Log.d("AAA",status.st.toString())
+                Log.d("AAA","сервер ошибка входа + ${status.st}")
             }
         }
 
@@ -39,11 +38,11 @@ class FBauthentication: UserStorage {
 
         auth.createUserWithEmailAndPassword(mail,password).addOnCompleteListener {task->
             if(task.isSuccessful){
-                Log.d("AAA","register complete")
                 status.st = 3
+                Log.d("AAA","сервер регистрация выполнена - ${status.st}")
             } else{
-                Log.d("AAA",task.exception!!.message.toString())
                 status.st = 4
+                Log.d("AAA",task.exception!!.message.toString() + "${status.st}")
                 status.st_mes = task.exception!!.message.toString()
             }
         }
