@@ -61,11 +61,7 @@ class ActivityAuthentication : AppCompatActivity() {
                     1000
                 )
             }else {
-                Toast.makeText(
-                    this@ActivityAuthentication,
-                    "Enter your email and/or password!",
-                    Toast.LENGTH_LONG
-                ).show()
+                Toast.makeText(this@ActivityAuthentication,"Enter your email and/or password!",Toast.LENGTH_LONG).show()
             }
             true
         }
@@ -92,17 +88,11 @@ class ActivityAuthentication : AppCompatActivity() {
                     1000
                 )
             } else {
-                Toast.makeText(
-                    this@ActivityAuthentication,
-                    "Enter your email and/or password!",
-                    Toast.LENGTH_LONG
-                ).show()
+                Toast.makeText(this@ActivityAuthentication,"Enter your email and/or password!",Toast.LENGTH_LONG).show()
             }
             true
         }
     }
-
-
 
     private fun createAlertDialog (index:Int){
 

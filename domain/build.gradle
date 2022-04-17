@@ -9,5 +9,5 @@ java {
 }
 
 dependencies {
-    implementation 'com.google.firebase:firebase-auth-ktx:21.0.2'
+    implementation 'com.google.firebase:firebase-auth-ktx:21.0.3'
 }
