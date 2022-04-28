@@ -14,7 +14,7 @@ class DataRepositoryImp (private val fBstorage: FBstorage, private val dataRoom:
     }
 
     fun saveDataRoom(saveParam: DataModel){
-        return dataRoom.saveDataStorage(mapToStorage(saveParam))
+//        return dataRoom.saveDataStorage(mapToStorage(saveParam))
     }
 
     fun mapToStorage(saveParam: DataModel):DataModelStorage{
