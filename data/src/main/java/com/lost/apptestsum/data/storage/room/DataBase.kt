@@ -7,5 +7,5 @@ import com.lost.apptestsum.data.storage.room.entity.DataEntity
 
 @Database (entities = [DataEntity::class], version = 1)
 abstract class DataBase: RoomDatabase() {
-        abstract fun dataDao():DataEntity
+        abstract fun dataDao():DAO
 }
