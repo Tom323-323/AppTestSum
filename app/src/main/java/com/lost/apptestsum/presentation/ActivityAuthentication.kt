@@ -77,6 +77,7 @@ class ActivityAuthentication : AppCompatActivity() {
                 Handler(Looper.getMainLooper()).postDelayed(
                     {
                         val i = FBauthentication.status.st
+
                         if (i.toString().equals("3")){
                             Log.d("AAA","регистрация выполнена - $i")
                             createAlertDialog(1)}
