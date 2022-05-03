@@ -14,10 +14,14 @@ import com.google.firebase.ktx.Firebase
 import com.lost.apptestsum.R
 import com.lost.apptestsum.domain.model.DataModel
 
+
 class AdapterActivityRead(private val dataList: ArrayList<DataModel>): RecyclerView.Adapter<AdapterActivityRead.ViewHolder>() {
 
     val myRef = FirebaseDatabase.getInstance().reference
     val user = Firebase.auth.currentUser
+
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterActivityRead.ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.view_holder,parent,false)
         return ViewHolder(itemView)
@@ -53,6 +57,8 @@ class AdapterActivityRead(private val dataList: ArrayList<DataModel>): RecyclerV
 
         val key = dataList[index].idData
         dataList.removeAt(index)
+        //deleteRoom()
+
         notifyDataSetChanged()
 
         myRef.child(user!!.uid).child("$key").removeValue()
