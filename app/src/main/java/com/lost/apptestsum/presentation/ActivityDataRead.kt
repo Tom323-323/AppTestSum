@@ -8,6 +8,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import com.lost.apptestsum.R
+import com.lost.apptestsum.databinding.ActivityReadDataBinding
 import com.lost.apptestsum.presentation.adapter.AdapterActivityRead
 import com.lost.apptestsum.domain.model.DataModel
 
@@ -16,10 +17,13 @@ class ActivityDataRead: AppCompatActivity() {
     private  lateinit var recyclerView: RecyclerView
     private  lateinit var dataArrayList: ArrayList<DataModel>
     private  lateinit var db: DatabaseReference
+    private lateinit var binding: ActivityReadDataBinding
+
     val user = Firebase.auth.currentUser
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_read_data)
+        binding = ActivityReadDataBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)

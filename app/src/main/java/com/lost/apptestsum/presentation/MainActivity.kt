@@ -10,45 +10,43 @@ import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.lost.apptestsum.R
+import com.lost.apptestsum.databinding.ActivityMainBinding
 import com.lost.apptestsum.presentation.ViewModelMain.MainViewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var vm: MainViewModel
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         vm = ViewModelProvider(this, MainViewModelFactory(this))
             .get(MainViewModel::class.java)
 
         mailUserShow()
 
-        val editText = findViewById<EditText>(R.id.et_dataUser)
-        val btnSave = findViewById<Button>(R.id.btn_save)
-        val btnRead = findViewById<Button>(R.id.btn_read_data)
-        val btn_out = findViewById<TextView>(R.id.tv_logout)
-
-        btnSave.setOnClickListener(View.OnClickListener {
-            val text = editText.text.toString()
+        binding.btnSave.setOnClickListener(View.OnClickListener {
+            val text = binding.etDataUser.text.toString()
 
             if(text.isEmpty()){
-                Snackbar.make(btnSave,"Введи вес в поле",Snackbar.LENGTH_LONG)
+                Snackbar.make(binding.btnSave,"Введи вес в поле",Snackbar.LENGTH_LONG)
                 .setAction("OK"){ }.show()
             } else {
             vm.save(text)
-            Snackbar.make(btnSave,"Данные сохранены",Snackbar.LENGTH_LONG)
+            Snackbar.make(binding.btnSave,"Данные сохранены",Snackbar.LENGTH_LONG)
                 .setAction("OK"){ }.show()
-            editText.text.clear()
+                binding.etDataUser.text.clear()
             }
         })
 
-        btnRead.setOnClickListener(View.OnClickListener {
+        binding.btnReadData.setOnClickListener(View.OnClickListener {
             startActivity(Intent(this, ActivityDataRead::class.java))
             finish()
         })
 
-        btn_out.setOnClickListener(View.OnClickListener {
+        binding.tvLogout.setOnClickListener(View.OnClickListener {
             vm.out()
             startActivity(Intent(this,ActivityAuthentication::class.java))
             finish()

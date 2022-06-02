@@ -20,6 +20,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.lost.apptestsum.R
 import com.lost.apptestsum.data.storage.fireBase.FBauthentication
+import com.lost.apptestsum.databinding.ActivityAuthenticationBinding
+import com.lost.apptestsum.databinding.ActivityAuthenticationBinding.inflate
 import com.lost.apptestsum.domain.model.UserRegModel
 import com.lost.apptestsum.presentation.ViewModelMain.ActivityAuthViewModel
 
@@ -27,21 +29,21 @@ class ActivityAuthentication : AppCompatActivity() {
 
     var user: FirebaseAuth = Firebase.auth
 
+    private lateinit var binding: ActivityAuthenticationBinding
+
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_authentication)
+        binding = ActivityAuthenticationBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val vm = ViewModelProvider(this).get(ActivityAuthViewModel::class.java)
 
-        val edMail = findViewById<EditText>(R.id.et_mail)
-        val edPassw = findViewById<EditText>(R.id.et_password)
-        val btn_sign = findViewById<Button>(R.id.btn_sign)
-        val btn_reg = findViewById<Button>(R.id.btn_reg)
 
-        btn_sign.setOnTouchListener { view, event ->
-            val mail = edMail.text.toString()
-            val password = edPassw.text.toString()
+
+        binding.btnSign.setOnTouchListener { view, event ->
+            val mail = binding.etMail.text.toString()
+            val password = binding.etPassword.text.toString()
             if (event!!.action == MotionEvent.ACTION_DOWN && mail.isNotEmpty() && password.isNotEmpty()) {
 
                vm.sign(UserRegModel(mail = mail, password = password))
@@ -66,9 +68,9 @@ class ActivityAuthentication : AppCompatActivity() {
             true
         }
 
-        btn_reg.setOnTouchListener { view, event ->
-            val mail = edMail.text.toString()
-            val password = edPassw.text.toString()
+        binding.btnReg.setOnTouchListener { view, event ->
+            val mail = binding.etMail.text.toString()
+            val password = binding.etPassword.text.toString()
             if (event.action == MotionEvent.ACTION_DOWN && mail.isNotEmpty() && password.isNotEmpty()) {
 
                 vm.registr(UserRegModel(mail = mail, password = password))
